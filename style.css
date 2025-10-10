@@ -375,6 +375,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    position: relative;
 }
 
 .exit-button {
@@ -563,4 +564,3 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--border-light);
 }
-
