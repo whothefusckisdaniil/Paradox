@@ -216,6 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.className = 'choice-button';
                 button.innerHTML = `<span class="choice-text">${choice.text}</span><div class="choice-hover-effect"></div>`;
                 button.addEventListener('click', () => {
+                    button.blur(); 
                     if (choice.nextScene === 'main_menu') {
                         if (scene.isEnding) {
                             updateCompletionStatus(scene);
