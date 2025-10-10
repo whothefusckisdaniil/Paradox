@@ -1,0 +1,356 @@
+{
+  "title": "Проклятие Пепельного Трона",
+  "description": "Мрачный квест о падшем королевстве, где грань между спасителем и чудовищем стирается с каждым шагом.",
+  "startScene": "ruins_awakening",
+  "totalEndings": 5,
+  "scenes": {
+    "ruins_awakening": {
+      "backgroundImage": "assets/curse of the throne backgrounds/8e7baea0a51311f09c31aa06e5c63f0f-1.jpeg",
+      "text": "Ты приходишь в себя среди руин тронного зала. Запах гнили и пепла въедается в лёгкие. На стене кровью выведено: «Король мёртв. Корона ждёт».",
+      "choices": [
+        { "text": "Осмотреть трон", "nextScene": "cursed_throne" },
+        { "text": "Изучить надпись", "nextScene": "blood_message" },
+        { "text": "Покинуть зал", "nextScene": "corrupted_courtyard" }
+      ]
+    },
+    "cursed_throne": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-9.jpg",
+      "text": "Трон из почерневшего железа источает холод. У его подножия — кости. Много костов. Когда ты приближаешься, шёпот наполняет голову: «Сядь. Стань. Правь».",
+      "choices": [
+        { "text": "Сесть на трон", "nextScene": "coronation" },
+        { "text": "Отступить", "nextScene": "corrupted_courtyard" },
+        { "text": "Разрушить трон", "nextScene": "throne_fury" }
+      ]
+    },
+    "blood_message": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-10.jpg",
+      "text": "Присмотревшись, ты видишь не просто кровь — это имена. Сотни имён, написанных поверх друг друга. Последнее из них... твоё собственное.",
+      "choices": [
+        { "text": "Коснуться своего имени", "nextScene": "memory_flood" },
+        { "text": "Уйти немедленно", "nextScene": "corrupted_courtyard" },
+        { "text": "Попытаться стереть", "nextScene": "wall_whispers" }
+      ]
+    },
+    "corrupted_courtyard": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-11.jpg",
+      "text": "Внутренний двор затянут чёрными шипами. На мёртвых деревьях висят тела — все в королевских одеждах. Впереди виднеются ворота города и спуск в подземелье.",
+      "choices": [
+        { "text": "Идти к городским воротам", "nextScene": "plague_city" },
+        { "text": "Спуститься в подземелье", "nextScene": "catacombs_entrance" },
+        { "text": "Исследовать тела", "nextScene": "dead_kings" }
+      ]
+    },
+    "dead_kings": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-12.jpg",
+      "text": "Каждое тело носит корону. Каждый — король. На одном из трупов ты узнаёшь своё лицо, искажённое гримасой безумия.",
+      "choices": [
+        { "text": "Снять корону с трупа", "nextScene": "false_crown" },
+        { "text": "Бежать отсюда", "nextScene": "catacombs_entrance" },
+        { "text": "Сжечь тела", "nextScene": "purging_fire" }
+      ]
+    },
+    "plague_city": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-13.jpg",
+      "text": "Город погряз в чуме и грязи. Изможденные фигуры бродят по улицам, но не замечают тебя. На площади возвышается виселица с единственной петлёй.",
+      "choices": [
+        { "text": "Подойти к виселице", "nextScene": "gallows" },
+        { "text": "Войти в собор", "nextScene": "corrupted_cathedral" },
+        { "text": "Искать выживших", "nextScene": "plague_survivor" }
+      ]
+    },
+    "catacombs_entrance": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-14.jpg",
+      "text": "Спуск ведёт в кромешную тьму. Стены покрыты резьбой — сцены коронаций, казней, войн. Внизу слышится пение. Или стоны.",
+      "choices": [
+        { "text": "Спуститься вниз", "nextScene": "ritual_chamber" },
+        { "text": "Вернуться наверх", "nextScene": "corrupted_courtyard" },
+        { "text": "Прислушаться к звукам", "nextScene": "voices_below" }
+      ]
+    },
+    "memory_flood": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-15.jpg",
+      "text": "Воспоминания обрушиваются лавиной. Ты помнишь: ты уже был здесь. Ты носил корону. Ты стал чудовищем. И ты вернулся, чтобы попытаться снова.",
+      "choices": [
+        { "text": "Принять прошлое", "nextScene": "acceptance_path" },
+        { "text": "Отвергнуть видения", "nextScene": "corrupted_courtyard" },
+        { "text": "Искать способ разорвать цикл", "nextScene": "catacombs_entrance" }
+      ]
+    },
+    "wall_whispers": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-16.jpg",
+      "text": "Стена оживает под твоими пальцами. Голоса всех прошлых королей вопят в унисон: «Ты не можешь измениться. Корона жаждет. Корона берёт».",
+      "choices": [
+        { "text": "Слушать дальше", "nextScene": "madness_embrace" },
+        { "text": "Заткнуть уши и бежать", "nextScene": "corrupted_courtyard" }
+      ]
+    },
+    "coronation": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-17.jpg",
+      "text": "Корона материализуется из дыма и опускается на твою голову. Боль. Экстаз. Власть. Ты чувствуешь, как каждая жизнь в королевстве становится твоей — и как ты становишься их проклятием.",
+      "isEnding": true,
+      "endingTitle": "Новый Тиран",
+      "endingType": "defeat",
+      "endingId": "dark_king",
+      "endingQuote": "Ты стал королём. Но короли здесь не правят — они пожирают.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "throne_fury": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-18.jpg",
+      "text": "Ты разбиваешь трон. Взрыв энергии сотрясает замок. Но вместо освобождения ты чувствуешь, как проклятие перетекает в тебя. Теперь ты — сам трон.",
+      "isEnding": true,
+      "endingTitle": "Живое Проклятие",
+      "endingType": "defeat",
+      "endingId": "curse_bearer",
+      "endingQuote": "Нельзя уничтожить проклятие, не став его частью.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "ritual_chamber": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-19.jpg",
+      "text": "Огромная камера с алтарём из человеческих костей. Фигуры в рванье окружают его, распевая на мёртвом языке. Они поворачиваются к тебе и преклоняют колени.",
+      "choices": [
+        { "text": "Подойти к алтарю", "nextScene": "blood_sacrifice" },
+        { "text": "Спросить, кто они", "nextScene": "cult_truth" },
+        { "text": "Убежать", "nextScene": "catacombs_entrance" }
+      ]
+    },
+    "voices_below": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-20.jpg",
+      "text": "Голоса поют гимн коронации. Но слова искажены: «Корона — рана. Король — раб. Трон — могила».",
+      "choices": [
+        { "text": "Спуститься к источнику", "nextScene": "ritual_chamber" },
+        { "text": "Уйти прочь", "nextScene": "corrupted_courtyard" }
+      ]
+    },
+    "gallows": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-21.jpg",
+      "text": "Петля предназначена для короля. Ты это знаешь. На деревянной доске выжжено: «Единственный выход — последний король».",
+      "choices": [
+        { "text": "Надеть петлю", "nextScene": "martyrs_end" },
+        { "text": "Уничтожить виселицу", "nextScene": "plague_city" },
+        { "text": "Искать другой путь", "nextScene": "corrupted_cathedral" }
+      ]
+    },
+    "corrupted_cathedral": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-22.jpg",
+      "text": "Собор осквернён. Святые статуи плачут кровью. На алтаре лежит древний том — «Хроники Проклятых Королей».",
+      "choices": [
+        { "text": "Прочитать хроники", "nextScene": "truth_revealed" },
+        { "text": "Молиться", "nextScene": "broken_prayer" },
+        { "text": "Покинуть собор", "nextScene": "plague_city" }
+      ]
+    },
+    "plague_survivor": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-23.jpg",
+      "text": "Ты находишь живого. Он хватает тебя за руку скелетной хваткой: «Не бери корону... она берёт всё... даже смерть становится невозможной...»",
+      "choices": [
+        { "text": "Выслушать его до конца", "nextScene": "survivors_tale" },
+        { "text": "Оттолкнуть", "nextScene": "plague_city" }
+      ]
+    },
+    "acceptance_path": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-24.jpg",
+      "text": "Ты принимаешь, что был монстром. Что будешь им снова. Но на этот раз — осознанно. Может, так проклятие ослабнет. Или станет сильнее.",
+      "choices": [
+        { "text": "Вернуться к трону", "nextScene": "cursed_throne" },
+        { "text": "Искать способ прервать цикл", "nextScene": "catacombs_entrance" }
+      ]
+    },
+    "madness_embrace": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-25.jpg",
+      "text": "Ты погружаешься в безумие всех королей до тебя. Их ярость, жадность и отчаяние становятся твоими. Ты перестаёшь отличать себя от проклятия.",
+      "isEnding": true,
+      "endingTitle": "Разум, Поглощённый Троном",
+      "endingType": "defeat",
+      "endingId": "madness",
+      "endingQuote": "Корона не сводит с ума — она показывает, кем ты был всегда.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "blood_sacrifice": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-26.jpg",
+      "text": "Культисты указывают на алтарь. «Принеси жертву — себя или королевство». Нож лежит перед тобой, холодный и ждущий.",
+      "choices": [
+        { "text": "Принести себя в жертву", "nextScene": "martyrs_end" },
+        { "text": "Отказаться", "nextScene": "cult_fury" },
+        { "text": "Убить культистов", "nextScene": "massacre" }
+      ]
+    },
+    "cult_truth": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-27.jpg",
+      "text": "«Мы — те, кто отказался от короны. Мы выбрали вечность в тени, а не власть в проклятии. Но ты... ты можешь положить этому конец. Или продолжить».",
+      "choices": [
+        { "text": "Спросить, как закончить", "nextScene": "truth_revealed" },
+        { "text": "Уйти", "nextScene": "catacombs_entrance" }
+      ]
+    },
+    "truth_revealed": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-28.jpg",
+      "text": "Ты узнаёшь правду: королевство было проклято первым королём, который принёс в жертву свой народ ради бессмертия. Каждый новый король — попытка проклятия обрести физическую форму.",
+      "choices": [
+        { "text": "Найти способ разрушить проклятие", "nextScene": "final_choice" },
+        { "text": "Принять роль хранителя", "nextScene": "eternal_watcher" },
+        { "text": "Бежать из королевства", "nextScene": "cowards_road" }
+      ]
+    },
+    "broken_prayer": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-29.jpg",
+      "text": "Ты молишься, но боги мертвы. Или никогда не существовали. Проклятие сильнее любой веры.",
+      "isEnding": true,
+      "endingTitle": "Молитва в Пустоту",
+      "endingType": "neutral",
+      "endingId": "faithless",
+      "endingQuote": "В мире, где боги молчат, монстры говорят громче всех.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "survivors_tale": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-30.jpg",
+      "text": "Он рассказывает: каждый король начинал как спаситель. И каждый становился тираном. «Проклятие питается надеждой. Оно превращает добро в яд».",
+      "choices": [
+        { "text": "Продолжить путь", "nextScene": "final_choice" },
+        { "text": "Остаться с умирающим", "nextScene": "quiet_end" }
+      ]
+    },
+    "false_crown": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-31.jpg",
+      "text": "Корона холодная и ржавая. Как только ты надеваешь её, чувствуешь голод — не твой, а короны. Она хочет крови.",
+      "choices": [
+        { "text": "Поддаться голоду", "nextScene": "massacre" },
+        { "text": "Сопротивляться", "nextScene": "will_battle" },
+        { "text": "Снять корону", "nextScene": "corrupted_courtyard" }
+      ]
+    },
+    "purging_fire": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-32.jpg",
+      "text": "Пламя пожирает мертвецов, но их крики эхом разносятся по двору. Огонь не очищает — он лишь высвобождает их ярость.",
+      "choices": [
+        { "text": "Стоять и наблюдать", "nextScene": "ghost_kings" },
+        { "text": "Бежать", "nextScene": "plague_city" }
+      ]
+    },
+    "cult_fury": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-33.jpg",
+      "text": "Культисты набрасываются на тебя с кинжалами. Но их раны не кровоточат — из них вытекает тьма.",
+      "isEnding": true,
+      "endingTitle": "Поглощённый Культом",
+      "endingType": "defeat",
+      "endingId": "cult_consumed",
+      "endingQuote": "Отказ от проклятия не освобождает. Он лишь меняет хозяина.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "massacre": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-34.jpg",
+      "text": "Ты убиваешь их всех. И с каждой смертью корона сжимается на голове. Ты больше не человек. Ты — оружие проклятия.",
+      "isEnding": true,
+      "endingTitle": "Мясник Королевства",
+      "endingType": "defeat",
+      "endingId": "butcher",
+      "endingQuote": "Корона не делает тебя королём. Она делает тебя палачом.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "final_choice": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-35.jpg",
+      "text": "У тебя есть выбор: принести себя в жертву, чтобы сжечь проклятие вместе с королевством, или стать вечным стражем, удерживая его силой воли.",
+      "choices": [
+        { "text": "Сжечь всё дотла", "nextScene": "purification" },
+        { "text": "Стать вечным стражем", "nextScene": "eternal_watcher" },
+        { "text": "Отказаться и бежать", "nextScene": "cowards_road" }
+      ]
+    },
+    "eternal_watcher": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-36.jpg",
+      "text": "Ты садишься на трон не как король, а как страж. Каждый день — битва с проклятием внутри. Ты будешь страдать вечно, но королевство больше не падёт.",
+      "isEnding": true,
+      "endingTitle": "Вечный Страж",
+      "endingType": "bittersweet",
+      "endingId": "guardian",
+      "endingQuote": "Героизм — это не победа. Это готовность страдать вечно, чтобы другие не страдали вовсе.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "purification": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-37.jpg",
+      "text": "Ты призываешь огонь. Королевство горит. Проклятие кричит, но не может сопротивляться. Ты сгораешь последним, и с тобой умирает последняя надежда зла.",
+      "isEnding": true,
+      "endingTitle": "Огненное Очищение",
+      "endingType": "victory",
+      "endingId": "purge",
+      "endingQuote": "Иногда спасение требует уничтожения. Даже себя.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "cowards_road": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-38.jpg",
+      "text": "Ты уходишь. За спиной королевство погружается в тьму, но это уже не твоя проблема. Ты жив. Но каждую ночь слышишь крики из прошлого.",
+      "isEnding": true,
+      "endingTitle": "Путь Труса",
+      "endingType": "defeat",
+      "endingId": "deserter",
+      "endingQuote": "Ты сбежал от проклятия. Но не от себя.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "martyrs_end": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-39.jpg",
+      "text": "Ты надеваешь петлю. Смерть короля по своей воле разрывает цикл. Королевство начинает исцеляться. Ты — последний.",
+      "isEnding": true,
+      "endingTitle": "Последний Король",
+      "endingType": "victory",
+      "endingId": "martyr",
+      "endingQuote": "Единственный способ разорвать цикл тирании — не стать тираном.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "quiet_end": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-40.jpg",
+      "text": "Ты остаёшься с ним до конца. Вы не говорите. Просто ждёте. Когда он умирает, ты понимаешь — и ты тоже больше не хочешь идти дальше.",
+      "isEnding": true,
+      "endingTitle": "Тихий Конец",
+      "endingType": "neutral",
+      "endingId": "surrender",
+      "endingQuote": "Иногда лучшее, что можно сделать — просто остановиться.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "will_battle": {
+      "backgroundImage": "assets/curse of the throne backgrounds/c02594f9a51711f092d1c2c08fee00a8-1.jpeg",
+      "text": "Ты сражаешься с проклятием внутри себя. Каждая секунда — агония. Ты чувствуешь, как оно вгрызается в разум.",
+      "choices": [
+        { "text": "Продолжать бороться", "nextScene": "will_victory" },
+        { "text": "Сдаться", "nextScene": "coronation" }
+      ]
+    },
+    "will_victory": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-42.jpg",
+      "text": "Ты вырываешь корону с головы. Она разбивается. Впервые за века проклятие отступает перед волей. Ты свободен. Но королевство всё ещё во тьме.",
+      "choices": [
+        { "text": "Попытаться спасти королевство", "nextScene": "final_choice" },
+        { "text": "Уйти", "nextScene": "cowards_road" }
+      ]
+    },
+    "ghost_kings": {
+      "backgroundImage": "assets/curse of the throne backgrounds/output-42.jpg",
+      "text": "Призраки королей восстают из пепла. Они окружают тебя, обвиняя: «Ты станешь таким же. Корона ждёт. Она всегда ждёт».",
+      "choices": [
+        { "text": "Принять их вызов", "nextScene": "cursed_throne" },
+        { "text": "Изгнать призраков", "nextScene": "will_battle" },
+        { "text": "Бежать", "nextScene": "plague_city" }
+      ]
+    }
+  }
+}

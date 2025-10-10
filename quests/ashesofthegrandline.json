@@ -1,0 +1,486 @@
+{
+  "title": "Проклятие Гранд Лайн",
+  "description": "Мрачный квест о пиратах, потерявших мечту, в мире, где легенда о Ван Пис стала проклятием.",
+  "startScene": "shipwreck_awakening",
+  "totalEndings": 5,
+  "scenes": {
+    "shipwreck_awakening": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-43.jpg",
+      "text": "Ты приходишь в себя на обломках корабля. Море цвета нефти поглотило твою команду. На мачте висит истлевший Весёлый Роджер. Вдали виднеется порт — но дым над ним чёрный, как смола.",
+      "choices": [
+        { "text": "Плыть к порту", "nextScene": "cursed_port" },
+        { "text": "Обыскать обломки", "nextScene": "ship_remains" },
+        { "text": "Искать выживших", "nextScene": "lone_survivor" }
+      ]
+    },
+    "ship_remains": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-44.jpg",
+      "text": "Среди обломков ты находишь карту, пропитанную кровью. На ней отмечен остров с надписью: «Здесь мечты умирают». Рядом лежит логпоуз, но стрелка дрожит, указывая во все стороны.",
+      "choices": [
+        { "text": "Взять карту", "nextScene": "cursed_map" },
+        { "text": "Уничтожить карту", "nextScene": "cursed_port" },
+        { "text": "Следовать за логпоузом", "nextScene": "compass_madness" }
+      ]
+    },
+    "lone_survivor": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-45.jpg",
+      "text": "Ты находишь члена команды — еле живого. Он хватает тебя: «Не ищи Ван Пис... те, кто нашли его... они не вернулись людьми...»",
+      "choices": [
+        { "text": "Спросить, что он видел", "nextScene": "survivors_vision" },
+        { "text": "Помочь ему", "nextScene": "mercy_or_cruelty" },
+        { "text": "Оставить его", "nextScene": "cursed_port" }
+      ]
+    },
+    "cursed_port": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-46.jpg",
+      "text": "Порт погружён в вечный шторм. Люди бродят с пустыми глазами. На площади висит плакат с перечёркнутым лицом Луффи и надписью: «Король Пиратов мёртв. Мечта — ложь».",
+      "choices": [
+        { "text": "Войти в таверну", "nextScene": "pirates_tavern" },
+        { "text": "Искать морских офицеров", "nextScene": "marine_outpost" },
+        { "text": "Направиться к пристани", "nextScene": "ghost_ship" }
+      ]
+    },
+    "cursed_map": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-47.jpg",
+      "text": "Карта начинает меняться. Острова исчезают, появляются новые. Ты слышишь шёпот: «Следуй... и узнаешь правду о Ван Пис...»",
+      "choices": [
+        { "text": "Следовать карте", "nextScene": "island_of_broken_dreams" },
+        { "text": "Сжечь карту", "nextScene": "cursed_port" },
+        { "text": "Показать карту в порту", "nextScene": "pirates_tavern" }
+      ]
+    },
+    "compass_madness": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-48.jpg",
+      "text": "Логпоуз сходит с ума. Стрелка крутится всё быстрее, пока не застывает, указывая вниз — в глубины океана.",
+      "choices": [
+        { "text": "Нырнуть в океан", "nextScene": "underwater_grave" },
+        { "text": "Разбить логпоуз", "nextScene": "cursed_port" },
+        { "text": "Игнорировать", "nextScene": "cursed_port" }
+      ]
+    },
+    "survivors_vision": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-49.jpg",
+      "text": "«Мы нашли Лафтель... Луффи был там... но это был не он. Он сидел на троне из костей своих друзей и смеялся. Смеялся, пока мы не начали убивать друг друга...»",
+      "choices": [
+        { "text": "Не верить ему", "nextScene": "cursed_port" },
+        { "text": "Искать правду", "nextScene": "island_of_broken_dreams" },
+        { "text": "Прикончить его из милосердия", "nextScene": "mercy_kill" }
+      ]
+    },
+    "mercy_or_cruelty": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-50.jpg",
+      "text": "Он просит о смерти. «Я не хочу видеть... как море забирает всех...»",
+      "choices": [
+        { "text": "Исполнить его просьбу", "nextScene": "mercy_kill" },
+        { "text": "Отказать", "nextScene": "cursed_port" },
+        { "text": "Попытаться спасти", "nextScene": "failed_rescue" }
+      ]
+    },
+    "pirates_tavern": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-51.jpg",
+      "text": "Таверна полна сломленных пиратов. Старик с шрамом через всё лицо бросает на стол Вечный Поуз: «Хочешь найти Ван Пис? Он проклят. Каждый, кто приближается, теряет то, что любит больше всего».",
+      "choices": [
+        { "text": "Взять Вечный Поуз", "nextScene": "eternal_pose_path" },
+        { "text": "Спросить о Луффи", "nextScene": "luffy_legend" },
+        { "text": "Уйти", "nextScene": "cursed_port" }
+      ]
+    },
+    "marine_outpost": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-52.jpg",
+      "text": "База Морпехов заброшена. На стене кровью написано: «Справедливость умерла на Гранд Лайн». Ты находишь дневник вице-адмирала.",
+      "choices": [
+        { "text": "Прочитать дневник", "nextScene": "admirals_truth" },
+        { "text": "Обыскать базу", "nextScene": "weapon_cache" },
+        { "text": "Покинуть базу", "nextScene": "cursed_port" }
+      ]
+    },
+    "ghost_ship": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-53.jpg",
+      "text": "У пристани стоит корабль-призрак. На палубе — силуэты. Один из них поворачивается — это Брук, но его глаза пусты. «Йо-хо-хо... мы все уже мертвы...»",
+      "choices": [
+        { "text": "Подняться на борт", "nextScene": "ghost_crew" },
+        { "text": "Позвать Брука", "nextScene": "brook_encounter" },
+        { "text": "Уйти прочь", "nextScene": "cursed_port" }
+      ]
+    },
+    "island_of_broken_dreams": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-54.jpg",
+      "text": "Остров усеян обломками легендарных кораблей. Флаг Соломенной Шляпы разорван пополам. В центре острова — гигантская статуя Луффи, но лицо её искажено в крике.",
+      "choices": [
+        { "text": "Исследовать статую", "nextScene": "luffy_statue" },
+        { "text": "Искать выживших", "nextScene": "nami_encounter" },
+        { "text": "Направиться вглубь острова", "nextScene": "treasure_chamber" }
+      ]
+    },
+    "mercy_kill": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-55.jpg",
+      "text": "Ты освобождаешь его от страданий. Его последние слова: «Скажи морю... что мы пытались...»",
+      "choices": [
+        { "text": "Продолжить путь", "nextScene": "cursed_port" }
+      ]
+    },
+    "failed_rescue": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-56.jpg",
+      "text": "Он умирает у тебя на руках. Море забирает его тело, не оставляя даже следа. Ты понимаешь — здесь никто не может быть спасён.",
+      "choices": [
+        { "text": "Отправиться в порт", "nextScene": "cursed_port" }
+      ]
+    },
+    "eternal_pose_path": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-57.jpg",
+      "text": "Вечный Поуз светится тёмно-красным. Он ведёт к Лафтелю. Но ты чувствуешь — это не просто путь. Это приговор.",
+      "choices": [
+        { "text": "Следовать за поузом", "nextScene": "laughtale_approach" },
+        { "text": "Уничтожить его", "nextScene": "cursed_port" },
+        { "text": "Отдать кому-то другому", "nextScene": "cursed_gift" }
+      ]
+    },
+    "luffy_legend": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-58.jpg",
+      "text": "«Луффи нашёл Ван Пис. Но это не было сокровищем. Это была истина — что свобода невозможна. Он сошёл с ума. Говорят, он всё ещё там, смеётся на руинах мечты».",
+      "choices": [
+        { "text": "Искать Луффи", "nextScene": "island_of_broken_dreams" },
+        { "text": "Не верить", "nextScene": "cursed_port" }
+      ]
+    },
+    "admirals_truth": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-59.jpg",
+      "text": "«Мы прикрывали правду веками. Ван Пис — не сокровище. Это проклятие, оставленное Джой Боем. Оно убивает надежду. Луффи... прости нас...»",
+      "choices": [
+        { "text": "Искать адмиралов", "nextScene": "akainu_encounter" },
+        { "text": "Продолжить поиски", "nextScene": "island_of_broken_dreams" }
+      ]
+    },
+    "weapon_cache": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-60.jpg",
+      "text": "Ты находишь планы Древнего Оружия. Но они исписаны безумными заметками: «Единственный способ остановить проклятие — уничтожить Гранд Лайн».",
+      "choices": [
+        { "text": "Взять планы", "nextScene": "weapon_ending" },
+        { "text": "Уничтожить планы", "nextScene": "cursed_port" }
+      ]
+    },
+    "ghost_crew": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-61.jpg",
+      "text": "Вся команда Соломенной Шляпы на палубе — но они призраки. Зоро бесконечно точит меч, Санджи курит сигарету, которая никогда не кончается. Нами шепчет: «Мы никогда не уйдём...»",
+      "choices": [
+        { "text": "Попытаться их спасти", "nextScene": "crew_madness" },
+        { "text": "Спросить о Луффи", "nextScene": "luffy_location" },
+        { "text": "Покинуть корабль", "nextScene": "cursed_port" }
+      ]
+    },
+    "brook_encounter": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-62.jpg",
+      "text": "Брук смотрит на тебя пустыми глазницами: «Я пережил всех... Лабун никогда не узнает правды... Йо-хо-хо... как же это больно, даже без сердца...»",
+      "choices": [
+        { "text": "Обещать найти Лабуна", "nextScene": "broken_promise" },
+        { "text": "Спросить о команде", "nextScene": "luffy_location" },
+        { "text": "Уйти", "nextScene": "cursed_port" }
+      ]
+    },
+    "luffy_statue": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-63.jpg",
+      "text": "Статуя излучает тёмную энергию. На постаменте надпись: «Здесь похоронена величайшая мечта». Статуя начинает плакать чёрной жидкостью.",
+      "choices": [
+        { "text": "Коснуться статуи", "nextScene": "luffy_vision" },
+        { "text": "Разрушить её", "nextScene": "statue_destruction" },
+        { "text": "Уйти", "nextScene": "treasure_chamber" }
+      ]
+    },
+    "nami_encounter": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-64.jpg",
+      "text": "Ты находишь Нами. Она жива, но глаза пусты. «Я рисовала карту мира... но мир не хотел быть нарисованным... он стёр меня первой...»",
+      "choices": [
+        { "text": "Попытаться помочь ей", "nextScene": "nami_madness" },
+        { "text": "Спросить о Луффи", "nextScene": "luffy_location" },
+        { "text": "Оставить её", "nextScene": "treasure_chamber" }
+      ]
+    },
+    "treasure_chamber": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-65.jpg",
+      "text": "Глубоко на острове ты находишь палату. В центре — сундук с надписью «ONE PIECE». Но вокруг него — тела всех великих пиратов прошлого.",
+      "choices": [
+        { "text": "Открыть сундук", "nextScene": "one_piece_truth" },
+        { "text": "Уничтожить сундук", "nextScene": "destroy_legacy" },
+        { "text": "Уйти прочь", "nextScene": "rejection_ending" }
+      ]
+    },
+    "underwater_grave": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-66.jpg",
+      "text": "Ты ныряешь и видишь кладбище кораблей. Тысячи судов. Среди них — Саузенд Санни, разломленный пополам. Внутри — скелеты команды.",
+      "isEnding": true,
+      "endingTitle": "Погружение в Забвение",
+      "endingType": "defeat",
+      "endingId": "drowned",
+      "endingQuote": "Море хранит все мечты. И все кошмары тоже.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "laughtale_approach": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-67.jpg",
+      "text": "Ты достигаешь Лафтеля. Остров не смеётся — он стонет. В центре сидит фигура в соломенной шляпе, окружённая костями.",
+      "choices": [
+        { "text": "Подойти к фигуре", "nextScene": "luffy_final" },
+        { "text": "Бежать", "nextScene": "coward_escape" },
+        { "text": "Напасть", "nextScene": "fight_madness" }
+      ]
+    },
+    "cursed_gift": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-68.jpg",
+      "text": "Ты отдаёшь Поуз молодому пирату с горящими глазами. Он благодарит тебя и уходит. Через неделю ты узнаёшь — он убил всю свою команду, чтобы идти к Ван Пис в одиночку.",
+      "isEnding": true,
+      "endingTitle": "Проклятое Наследие",
+      "endingType": "defeat",
+      "endingId": "cursed_legacy",
+      "endingQuote": "Ты не нашёл проклятие. Но ты передал его дальше.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "akainu_encounter": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-69.jpg",
+      "text": "Ты находишь Акаину среди руин. Он не сражается. «Абсолютная справедливость... была иллюзией. Луффи доказал это. И мир рухнул».",
+      "choices": [
+        { "text": "Убить его", "nextScene": "justice_death" },
+        { "text": "Выслушать его", "nextScene": "akainu_confession" },
+        { "text": "Уйти", "nextScene": "island_of_broken_dreams" }
+      ]
+    },
+    "weapon_ending": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-70.jpg",
+      "text": "Ты активируешь Древнее Оружие. Гранд Лайн начинает разрушаться. Проклятие умирает вместе с морем. Но и мечты всех пиратов умирают с ним.",
+      "isEnding": true,
+      "endingTitle": "Конец Эпохи Пиратов",
+      "endingType": "bittersweet",
+      "endingId": "weapon_apocalypse",
+      "endingQuote": "Ты уничтожил проклятие. Но вместе с ним — всё, ради чего стоило жить.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "crew_madness": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-71.jpg",
+      "text": "Команда хватает тебя. Они тянут в глубину корабля, шепча: «Присоединись к нам... мы все — команда Луффи... навсегда...»",
+      "isEnding": true,
+      "endingTitle": "Вечная Команда",
+      "endingType": "defeat",
+      "endingId": "ghost_crew",
+      "endingQuote": "Накама — это навсегда. Даже после смерти.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "luffy_location": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-72.jpg",
+      "text": "Призрак указывает на остров вдали: «Он там... на Лафтеле... ждёт кого-то, кто остановит его... или присоединится...»",
+      "choices": [
+        { "text": "Отправиться к Лафтелю", "nextScene": "laughtale_approach" },
+        { "text": "Отказаться", "nextScene": "rejection_ending" }
+      ]
+    },
+    "broken_promise": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-73.jpg",
+      "text": "«Не обещай того, что не сможешь сдержать... мы все обещали... и предали каждое слово...» Брук исчезает в тумане.",
+      "choices": [
+        { "text": "Продолжить путь", "nextScene": "cursed_port" }
+      ]
+    },
+    "luffy_vision": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-74.jpg",
+      "text": "Видение обрушивается на тебя: Луффи достигает Ван Пис и понимает — это ловушка Мирового Правительства. Сокровище — машина, уничтожающая мечты. Он пытается её разрушить, но становится её частью.",
+      "choices": [
+        { "text": "Искать способ спасти его", "nextScene": "laughtale_approach" },
+        { "text": "Принять правду", "nextScene": "acceptance_path" }
+      ]
+    },
+    "statue_destruction": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-75.jpg",
+      "text": "Статуя рушится. Из неё вырывается крик — голос Луффи: «НЕ ОСТАНАВЛИВАЙСЯ!» Но крик превращается в стон боли.",
+      "choices": [
+        { "text": "Следовать зову", "nextScene": "laughtale_approach" },
+        { "text": "Покинуть остров", "nextScene": "coward_escape" }
+      ]
+    },
+    "nami_madness": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-76.jpg",
+      "text": "Нами хватает тебя: «Я видела конец всех маршрутов... все карты ведут в никуда... весь мир — тюрьма...» Она сжигает свои карты.",
+      "choices": [
+        { "text": "Остаться с ней", "nextScene": "shared_despair" },
+        { "text": "Продолжить путь", "nextScene": "treasure_chamber" }
+      ]
+    },
+    "one_piece_truth": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-77.jpg",
+      "text": "Ты открываешь сундук. Внутри — послание Джой Боя: «Если ты это читаешь — мир не изменился. Прости. Ван Пис — это не сокровище. Это надежда, что кто-то продолжит там, где я провалился. Но похоже... никто не смог».",
+      "choices": [
+        { "text": "Продолжить дело Джой Боя", "nextScene": "new_joyboy" },
+        { "text": "Уничтожить всё", "nextScene": "destroy_legacy" },
+        { "text": "Отказаться", "nextScene": "rejection_ending" }
+      ]
+    },
+    "destroy_legacy": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-78.jpg",
+      "text": "Ты сжигаешь Ван Пис дотла. Лафтель начинает тонуть. Проклятие умирает. Но с ним — и последняя надежда пиратов.",
+      "isEnding": true,
+      "endingTitle": "Конец Легенды",
+      "endingType": "bittersweet",
+      "endingId": "legacy_destroyed",
+      "endingQuote": "Ты уничтожил величайшую ложь. И величайшую мечту.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "rejection_ending": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-79.jpg",
+      "text": "Ты уходишь. Не от страха, а от понимания — некоторые сокровища лучше не находить. Море остаётся проклятым, но ты свободен.",
+      "isEnding": true,
+      "endingTitle": "Свобода Отказа",
+      "endingType": "neutral",
+      "endingId": "rejection",
+      "endingQuote": "Настоящая свобода — знать, когда остановиться.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "luffy_final": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-80.jpg",
+      "text": "Это Луффи. Но его улыбка пуста. «Я нашёл Ван Пис... и понял... что свободы не существует... но я всё равно смеюсь... потому что не могу остановиться...»",
+      "choices": [
+        { "text": "Попытаться спасти его", "nextScene": "save_luffy" },
+        { "text": "Сразиться с ним", "nextScene": "final_battle" },
+        { "text": "Присоединиться к нему", "nextScene": "join_madness" }
+      ]
+    },
+    "coward_escape": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-81.jpg",
+      "text": "Ты бежишь. Лафтель горит за спиной. Ты слышишь смех Луффи, эхом разносящийся по морю. Ты жив. Но каждую ночь видишь его улыбку.",
+      "isEnding": true,
+      "endingTitle": "Бегство от Проклятия",
+      "endingType": "defeat",
+      "endingId": "coward",
+      "endingQuote": "Иногда выживание — это не победа. Просто отсрочка.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "fight_madness": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-82.jpg",
+      "text": "Ты нападаешь, но это не бой — это резня. Каждый удар по Луффи отзывается болью в твоей груди. Будто ты бьёшь саму идею свободы.",
+      "isEnding": true,
+      "endingTitle": "Убийство Мечты",
+      "endingType": "defeat",
+      "endingId": "dream_killer",
+      "endingQuote": "Ты убил короля пиратов. И похоронил последнюю надежду.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "save_luffy": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-83.jpg",
+      "text": "Ты протягиваешь руку. «Луффи... ты же хотел свободы... для всех...» На секунду его глаза становятся живыми. «Спасибо... что попытался...» Он исчезает в свете.",
+      "isEnding": true,
+      "endingTitle": "Последнее Прощание",
+      "endingType": "bittersweet",
+      "endingId": "salvation",
+      "endingQuote": "Ты не спас короля пиратов. Но освободил его от проклятия.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "final_battle": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-84.jpg",
+      "text": "Луффи атакует. Его Gear 5 искажён — смех звучит как крик. Бой длится вечность. В конце ты побеждаешь. Но победа пуста — ты убил легенду.",
+      "isEnding": true,
+      "endingTitle": "Падение Короля",
+      "endingType": "defeat",
+      "endingId": "king_slayer",
+      "endingQuote": "Король пиратов мёртв. Эра свободы окончена.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "join_madness": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-85.jpg",
+      "text": "Ты садишься рядом с ним. Вместе вы смеётесь. Смех не прекращается. Даже когда море поглощает последний остров. Даже когда мир становится пустым.",
+      "isEnding": true,
+      "endingTitle": "Вечный Смех",
+      "endingType": "defeat",
+      "endingId": "madness_joined",
+      "endingQuote": "Луффи всегда хотел свободы. Теперь вы оба свободны от рассудка.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "new_joyboy": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-86.jpg",
+      "text": "Ты принимаешь наследие Джой Боя. Груз невыносим — нести надежду в мире, который её отверг. Но ты идёшь вперёд. Потому что кто-то должен.",
+      "isEnding": true,
+      "endingTitle": "Новый Джой Бой",
+      "endingType": "victory",
+      "endingId": "new_hope",
+      "endingQuote": "Мечта не умерла. Пока хоть кто-то готов её нести.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "acceptance_path": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-87.jpg",
+      "text": "Ты принимаешь правду: мир жесток. Мечты умирают. Но отказываться мечтать — значит умереть раньше смерти.",
+      "choices": [
+        { "text": "Искать Луффи", "nextScene": "laughtale_approach" },
+        { "text": "Начать новое путешествие", "nextScene": "new_beginning" }
+      ]
+    },
+    "justice_death": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-88.jpg",
+      "text": "Ты убиваешь символ справедливости. Акаину умирает со словами: «Может... я был неправ...» Его магма гаснет навсегда.",
+      "choices": [
+        { "text": "Продолжить путь", "nextScene": "island_of_broken_dreams" }
+      ]
+    },
+    "akainu_confession": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-89.jpg",
+      "text": "«Мы знали о Ван Пис. Мировое Правительство создало его как ловушку. Но Луффи... он был слишком чист... проклятие сломало его первым...»",
+      "choices": [
+        { "text": "Искать способ помочь Луффи", "nextScene": "laughtale_approach" },
+        { "text": "Уничтожить Правительство", "nextScene": "revolution_path" }
+      ]
+    },
+    "shared_despair": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-90.jpg",
+      "text": "Ты остаёшься с Нами. Вы сидите в тишине, наблюдая, как море пожирает остров. Вместе легче принять конец.",
+      "isEnding": true,
+      "endingTitle": "Разделённое Отчаяние",
+      "endingType": "neutral",
+      "endingId": "shared_end",
+      "endingQuote": "В конце не важно, нашёл ли ты сокровище. Важно, был ли ты один.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "new_beginning": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-91.jpg",
+      "text": "Ты покидаешь проклятые воды. Впереди — неизвестность. Может, там ты найдёшь новую мечту. Или хотя бы причину продолжать.",
+      "isEnding": true,
+      "endingTitle": "Неизведанные Воды",
+      "endingType": "neutral",
+      "endingId": "new_journey",
+      "endingQuote": "Конец одной истории — начало другой. Если хватит смелости плыть дальше.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "revolution_path": {
+      "backgroundImage": "assets/ashes of the grandline backgrounds/output-92.jpg",
+      "text": "Ты собираешь всех выживших пиратов. Вместе вы штурмуете Мариджойс. Мировое Правительство падает. Но на его месте — лишь хаос и пепел.",
+      "isEnding": true,
+      "endingTitle": "Революция Пепла",
+      "endingType": "bittersweet",
+      "endingId": "revolution",
+      "endingQuote": "Ты уничтожил старый мир. Но новый... может быть ещё хуже.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    }
+  }
+}

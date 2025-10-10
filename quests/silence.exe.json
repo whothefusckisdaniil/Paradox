@@ -1,0 +1,174 @@
+{
+  "title": "Тишина.exe",
+  "description": "Психоделический квест о мире без людей, где пустота начинает дышать.",
+  "startScene": "awakening",
+  "totalEndings": 4,
+  "scenes": {
+    "awakening": {
+      "backgroundImage": "assets/silence backgrounds/b7706462a4fc11f08c287e72a190c2a8-1.jpeg",
+      "text": "Ты просыпаешься. Телефон вибрирует, но на экране — только сообщение: «Сеть недоступна». За окном — абсолютная тишина.",
+      "choices": [
+        { "text": "Посмотреть в окно", "nextScene": "street_view" },
+        { "text": "Проверить телефон снова", "nextScene": "signal_loss" },
+        { "text": "Позвать кого-нибудь", "nextScene": "echo_call" }
+      ]
+    },
+    "street_view": {
+      "backgroundImage": "assets/silence backgrounds/83fc96f9a4fd11f085f2ba517be75906-1.jpeg",
+      "text": "На улице никого. Машины стоят с открытыми дверями, в окнах домов — движения нет. Воздух густой, как перед грозой.",
+      "choices": [
+        { "text": "Выйти из дома", "nextScene": "main_square" },
+        { "text": "Вернуться внутрь", "nextScene": "awakening" },
+        { "text": "Пойти к ближайшему магазину", "nextScene": "storefront" }
+      ]
+    },
+    "signal_loss": {
+      "backgroundImage": "assets/silence backgrounds/9f664daba4fe11f0b53cee68bf6c0233-1.jpeg",
+      "text": "Экран дрожит, появляются символы: ▒▒▒▒▒▒▒▒▒▒. На долю секунды кажется, что ты видишь своё лицо в телефоне — но глаза чужие.",
+      "choices": [
+        { "text": "Выключить телефон", "nextScene": "blackout" },
+        { "text": "Позвонить кому-то", "nextScene": "dial_tone" },
+        { "text": "Разбить экран", "nextScene": "street_view" }
+      ]
+    },
+    "echo_call": {
+      "backgroundImage": "assets/silence backgrounds/c295374ea4fe11f0bbca7eeb1029c504-1.jpeg",
+      "text": "Ты зовёшь, и тишина отвечает эхом. Только на секунду — будто кто-то повторяет твоё имя из соседней комнаты.",
+      "choices": [
+        { "text": "Пойти на звук", "nextScene": "mirror_room" },
+        { "text": "Заткнуть уши", "nextScene": "blackout" },
+        { "text": "Крикнуть громче", "nextScene": "loop_start" }
+      ]
+    },
+    "storefront": {
+      "backgroundImage": "assets/silence backgrounds/01179155a4ff11f0a903eaa58d141d62-1.jpeg",
+      "text": "Магазин пуст. На кассе мигает монитор, на котором появляется надпись: «Вам помочь?»",
+      "choices": [
+        { "text": "Ответить 'Да'", "nextScene": "assistant_ai" },
+        { "text": "Игнорировать", "nextScene": "main_square" },
+        { "text": "Выключить питание", "nextScene": "blackout" }
+      ]
+    },
+    "main_square": {
+      "backgroundImage": "assets/silence backgrounds/454487a9a4ff11f0a66f5adab29a5b9e-1.jpeg",
+      "text": "Площадь города утонула в тумане. На огромном экране мигает надпись: «Тест системы».",
+      "choices": [
+        { "text": "Подойти к экрану", "nextScene": "system_test" },
+        { "text": "Пойти к вокзалу", "nextScene": "station" },
+        { "text": "Крикнуть", "nextScene": "loop_start" }
+      ]
+    },
+    "assistant_ai": {
+      "backgroundImage": "assets/silence backgrounds/7614d701a4ff11f0b1e97644ca336b07-1.jpeg",
+      "text": "Голос из динамика говорит: «Пользователь обнаружен. Вы последний».",
+      "choices": [
+        { "text": "Спросить, где все", "nextScene": "system_test" },
+        { "text": "Выключить терминал", "nextScene": "blackout" },
+        { "text": "Ответить: 'Ты кто?'", "nextScene": "mirror_room" }
+      ]
+    },
+    "mirror_room": {
+      "backgroundImage": "assets/silence backgrounds/b442abcfa4ff11f0896886015376f2c1-1.jpeg",
+      "text": "Ты видишь своё отражение. Оно двигается с опозданием. Оно открывает рот и шепчет: «Ты — не человек. Ты — копия».",
+      "choices": [
+        { "text": "Сломать зеркало", "nextScene": "dissolution" },
+        { "text": "Коснуться отражения", "nextScene": "awakening2" },
+        { "text": "Убежать", "nextScene": "station" }
+      ]
+    },
+    "system_test": {
+      "backgroundImage": "assets/silence backgrounds/output-2.jpg",
+      "text": "На экране бегут слова: «СИСТЕМА ПЕРЕЗАГРУЖАЕТСЯ. НЕ ПАНИКУЙТЕ.» Внезапно экран гаснет, и туман сжимается вокруг.",
+      "choices": [
+        { "text": "Попробовать перезапустить систему", "nextScene": "control_room" },
+        { "text": "Спрятаться", "nextScene": "station" },
+        { "text": "Стоять и ждать", "nextScene": "loop_start" }
+      ]
+    },
+    "control_room": {
+      "backgroundImage": "assets/silence backgrounds/output-3.jpg",
+      "text": "В центре комнаты стоит стул. На одном из экранов появляется твоё лицо. Оно улыбается и говорит: «Хорошая попытка».",
+      "choices": [
+        { "text": "Сесть в стул", "nextScene": "awakening2" },
+        { "text": "Выключить всё", "nextScene": "blackout" },
+        { "text": "Убежать", "nextScene": "station" }
+      ]
+    },
+    "station": {
+      "backgroundImage": "assets/silence backgrounds/output-4.jpg",
+      "text": "Пустой вокзал. Электронное табло мигает одной строкой: «ПОСЛЕДНИЙ ПОЕЗД».",
+      "choices": [
+        { "text": "Сесть в поезд", "nextScene": "train_ending" },
+        { "text": "Ждать сигнала", "nextScene": "loop_start" },
+        { "text": "Вернуться в город", "nextScene": "main_square" }
+      ]
+    },
+    "awakening2": {
+      "backgroundImage": "assets/silence backgrounds/output-5.jpg",
+      "text": "Ты просыпаешься снова. Но теперь город — отражение. Всё наоборот. Ты чувствуешь, что кто-то наблюдает через экран.",
+      "isEnding": true,
+      "endingTitle": "Пробуждение (копии)",
+      "endingType": "defeat",
+      "endingId": "false_awake",
+      "endingQuote": "Ты проснулся, но не в своём теле. Возможно, оно и не нужно, чтобы чувствовать страх.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "dissolution": {
+      "backgroundImage": "assets/silence backgrounds/output-6.jpg",
+      "text": "Ты исчезаешь, как пиксели, сгорающие на солнце. Последний звук — собственное дыхание, растворённое в белом шуме.",
+      "isEnding": true,
+      "endingTitle": "Растворение",
+      "endingType": "defeat",
+      "endingId": "void_end",
+      "endingQuote": "Пустота не забрала тебя — ты сам ей стал.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "blackout": {
+      "backgroundImage": "assets/silence backgrounds/4bb4ed22a50111f0a4d34e9350978b9a-1.jpeg",
+      "text": "Темнота. Нет ни звука, ни времени. Только дрожание воздуха и ощущение взгляда за спиной.",
+      "isEnding": true,
+      "endingTitle": "Отключение",
+      "endingType": "neutral",
+      "endingId": "shutdown",
+      "endingQuote": "Иногда лучше выключить мир, чем услышать, как он зовёт по имени.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "dial_tone": {
+    "backgroundImage": "assets/silence backgrounds/4e94a9fea50211f09bc7bee257afc4d9-1.jpeg",
+    "text": "Ты поднимаешь трубку — в ответ только длинный гудок, но с каждой секундой он становится всё громче. Он заполняет комнату, разрывает барабанные перепонки. Ты кричишь, но никто не слышит.",
+    "isEnding": true,
+    "endingType": "defeat",
+    "endingId": "dial_tone",
+    "endingQuote": "Иногда тишина орёт громче любого голоса.",
+    "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+    ]
+    },
+    "train_ending": {
+      "backgroundImage": "assets/silence backgrounds/69a05ab2a50111f0aae52e5d6fce0899-1.jpeg",
+      "text": "Ты садишься в поезд. Он трогается, но станций больше нет. Только рельсы, уходящие в белую бесконечность.",
+      "isEnding": true,
+      "endingTitle": "Путь без конца",
+      "endingType": "defeat",
+      "endingId": "infinite_ride",
+      "endingQuote": "Поезд идёт в никуда. Но, может быть, именно там — покой.",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "loop_start": {
+      "backgroundImage": "assets/silence backgrounds/output-7.jpg",
+      "text": "Ты возвращаешься в ту же комнату, где всё началось. Телефон вибрирует. Сообщение: «Сеть недоступна».",
+      "choices": [
+        { "text": "Начать заново", "nextScene": "awakening" },
+        { "text": "Сесть и ждать", "nextScene": "blackout" }
+      ]
+    }
+  }
+}

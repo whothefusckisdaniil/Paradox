@@ -1,0 +1,101 @@
+{
+  "startScene": "signal",
+  "totalEndings": 3,
+  "scenes": {
+    "signal": {
+      "backgroundImage": "assets/fracture backgrounds/4a5164efa4e211f0b4a40263068f3ed5-1.jpeg",
+      "text": "Ты открываешь глаза. Мир дрожит. Белый шум разрывает тишину, будто кто-то крутит ручку старого телевизора внутри твоего черепа. Всё вокруг — пустая комната. В центре стоит зеркало, и из него доносится дыхание.",
+      "choices": [
+        { "text": "Подойти к зеркалу", "nextScene": "mirror" },
+        { "text": "Осмотреть комнату", "nextScene": "echo" },
+        { "text": "Закрыть глаза", "nextScene": "fog" }
+      ]
+    },
+    "mirror": {
+      "backgroundImage": "assets/fracture backgrounds/c46eb039a4e211f09f4b5ac8eb9d274d-1.jpeg",
+      "text": "Ты видишь себя, но отражение двигается с опозданием. Его губы шепчут: «Ты забыл, кто ты. Я могу напомнить.»",
+      "choices": [
+        { "text": "Сказать 'Кто ты?'", "nextScene": "fracture" },
+        { "text": "Протянуть руку к зеркалу", "nextScene": "archive" },
+        { "text": "Отойти назад", "nextScene": "signal" }
+      ]
+    },
+    "echo": {
+      "backgroundImage": "assets/fracture backgrounds/30c6f0b8a4e311f08f4fc690e433ccd5-1.jpeg",
+      "text": "На стенах слова, выцарапанные ногтями: «НЕ ПРОСЫПАЙСЯ». Из угла слышен металлический звон, будто капает вода… или кровь.",
+      "choices": [
+        { "text": "Приблизиться к углу", "nextScene": "fracture" },
+        { "text": "Прочесть надпись", "nextScene": "fog" },
+        { "text": "Закричать", "nextScene": "mirror" }
+      ]
+    },
+    "fog": {
+      "backgroundImage": "assets/fracture backgrounds/7fb1d29aa4e311f082dc864026b543ce-1.jpeg",
+      "text": "Ты проваливаешься в мягкий белый шум. Голоса вокруг — твои собственные мысли, возвращённые эхом. «Ты — не один. Но и не ты.»",
+      "choices": [
+        { "text": "Попробовать проснуться", "nextScene": "fracture" },
+        { "text": "Позвать кого-то", "nextScene": "archive" },
+        { "text": "Слушать дальше", "nextScene": "loop" }
+      ]
+    },
+    "fracture": {
+      "backgroundImage": "assets/fracture backgrounds/b0fd802ca4e311f0bafbc236a532996a-1.jpeg",
+      "text": "Ты стоишь на мосту из памяти. Слева — твоё детство. Справа — пустой город без звука. Под ногами — трещина, и через неё сочится свет.",
+      "choices": [
+        { "text": "Шагнуть в свет", "nextScene": "awakening" },
+        { "text": "Посмотреть вниз", "nextScene": "dissolution" },
+        { "text": "Вернуться обратно", "nextScene": "archive" }
+      ]
+    },
+    "archive": {
+      "backgroundImage": "assets/fracture backgrounds/ebcb1086a4e311f087b79e358abff60b-1.jpeg",
+      "text": "Ты входишь в комнату, полную старых телевизоров. На каждом — фрагменты твоих воспоминаний. В одном ты смеёшься. В другом — кричишь. В третьем — стоишь в этой же комнате.",
+      "choices": [
+        { "text": "Разбить экран", "nextScene": "fracture" },
+        { "text": "Войти в телевизор", "nextScene": "loop" },
+        { "text": "Отключить всё электричество", "nextScene": "awakening" }
+      ]
+    },
+    "loop": {
+      "backgroundImage": "assets/fracture backgrounds/29da3873a4e411f08fac9a7ce90b4052-1.jpeg",
+      "text": "Ты возвращаешься в начало. Комната. Зеркало. Тот же вдох за спиной. Но теперь отражение улыбается.",
+      "choices": [
+        { "text": "Улыбнуться в ответ", "nextScene": "awakening" },
+        { "text": "Разбить зеркало", "nextScene": "dissolution" },
+        { "text": "Отойти в тень", "nextScene": "signal" }
+      ]
+    },
+    "game_over": {
+      "backgroundImage": "assets/fracture backgrounds/092eab04a4e511f0bcc472aee84e4e6d-1.jpeg",
+      "text": "Экран мигает. «Game Over» вспыхивает в отражении твоих глаз. Но комната всё ещё жива. И кто-то начинает игру заново.",
+      "isEnding": true,
+      "endingType": "neutral",
+      "endingId": "loop_closure",
+      "choices": [
+        { "text": "Начать заново", "nextScene": "signal" },
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "awakening": {
+      "backgroundImage": "assets/fracture backgrounds/5971f53da4e411f0a66f5adab29a5b9e-1.jpeg",
+      "text": "Ты открываешь глаза. Комната пуста. Всё — тишина. Но ты чувствуешь лёгкость, будто вышел наружу из самого себя.",
+      "isEnding": true,
+      "endingTitle": "Пробуждение",
+      "endingType": "defeat",
+      "endingId": "awakening_light",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    },
+    "dissolution": {
+      "backgroundImage": "assets/fracture backgrounds/ae686188a4e411f0a7818a5786a1888c-1.jpeg",
+      "text": "Ты больше не чувствуешь тела. Только звук и пульс света. Никаких зеркал. Только ты — и никто.",
+      "isEnding": true,
+      "endingType": "defeat",
+      "endingId": "dissolution_void",
+      "choices": [
+        { "text": "Вернуться в меню", "nextScene": "main_menu" }
+      ]
+    }
+  }
+}
