@@ -10,34 +10,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- Скрипты рекламы -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8122604857359730" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
         <div class="scanline-overlay">
             <div class="scanline"></div>
         </div>
-
-        <script>window.yaContextCb=window.yaContextCb||[]</script>
-        <script src="https://yandex.ru/ads/system/context.js" async></script>
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8122604857359730" crossorigin="anonymous"></script>
-        <!-- Fullscreen -->
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-8122604857359730"
-            data-ad-slot="7205181565"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-
         <div class="noise-overlay"></div>
 
         <div id="menu-screen" class="screen">
             <header class="screen-header">
                 <h1>PARADOX</h1>
                 <div class="header-line"></div>
+                
+                <!-- 
+                  РЕКЛАМНЫЙ БЛОК ПЕРЕНЕСЕН СЮДА. 
+                  Теперь он находится внутри видимого экрана меню.
+                -->
+                <ins class="adsbygoogle"
+                    style="display:block; margin-top: 10px;"
+                    data-ad-client="ca-pub-8122604857359730"
+                    data-ad-slot="7205181565"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </header>
             
             <nav class="main-nav">
@@ -54,22 +57,11 @@
         </div>
 
         <div id="game-screen" class="screen hidden">
-            <button id="exit-to-menu-btn" class="exit-button">МЕНЮ</button>
-            
-            <div class="game-background">
-                <img id="background-image" src="" alt="Фон квеста">
-                <div class="background-pattern"></div>
-                
-                <div class="game-ui">
-                    <div id="story-text" class="story-text-container">
-                    </div>
-                    <div id="choices" class="choices-container">
-                    </div>
-                </div>
-            </div>
+            <!-- ... остальной код игрового экрана ... -->
         </div>
     </div>
 
     <script src="script.js" defer></script>
 </body>
 </html>
+
