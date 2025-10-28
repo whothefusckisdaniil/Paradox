@@ -10,33 +10,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- 
+      НОВЫЙ КОД GOOGLE ADSENDE H5 GAMES
+      Удалены все старые скрипты Яндекса и Google 
+    -->
+    
+    <!-- 1. Загрузка основного скрипта AdSense H5 -->
+    <script async
+        data-ad-client="ca-pub-8122604857359730"
+        data-adbreak-test="on" 
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        
+    <!-- 2. Инициализация API, как в вашем примере -->
+    <script>
+      window.adsbygoogle = window.adsbygoogle || [];
+      const adBreak = adConfig = function(o){ adsbygoogle.push(o); };
+    </script>
+    
 </head>
 <body>
     <div id="app">
         <div class="scanline-overlay">
             <div class="scanline"></div>
         </div>
-
-        <script>window.yaContextCb=window.yaContextCb||[]</script>
-        <script src="https://yandex.ru/ads/system/context.js" async></script>
-
-        <script>
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({
-            "blockId": "R-A-17479281-1",
-            "type": "fullscreen",
-            "platform": "touch",
-            "position": "absolute"
-            })
-        })
-        </script>
-
         <div class="noise-overlay"></div>
 
         <div id="menu-screen" class="screen">
             <header class="screen-header">
                 <h1>PARADOX</h1>
                 <div class="header-line"></div>
+                <!-- 
+                  Старый рекламный блок <ins> УДАЛЕН отсюда, 
+                  так как H5-реклама полноэкранная 
+                -->
             </header>
             
             <nav class="main-nav">
@@ -52,6 +59,7 @@
             </div>
         </div>
 
+        <!-- ВОССТАНОВЛЕННЫЙ БЛОК ИГРОВОГО ЭКРАНА -->
         <div id="game-screen" class="screen hidden">
             <button id="exit-to-menu-btn" class="exit-button">МЕНЮ</button>
             
@@ -72,3 +80,4 @@
     <script src="script.js" defer></script>
 </body>
 </html>
+
