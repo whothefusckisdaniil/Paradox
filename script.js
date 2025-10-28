@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Последний Прилив', 
             description: '-',
             coverImage: 'assets/covers/output-93.jpg',
-            isDev: true
+            totalEndings: 5
         },
         { 
             id: 'silence.exe', 
@@ -173,29 +173,58 @@ document.addEventListener('DOMContentLoaded', () => {
         displayQuests();
     }
 
-    async function startQuest(questId, sceneIdToLoad = null) {
-        currentQuestId = questId;
-        
-        // Обновляем время последнего прочтения при запуске квеста
-        const savedData = loadData();
-        savedData.lastReadTimestamps[questId] = Date.now();
-        saveData(savedData);
+    async function startQuest(quest) {
+        if (quest.isDev) return;
 
-        try {
-            const response = await fetch(`quests/${questId}.json`);
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            currentQuestData = await response.json();
-            
-            menuScreen.classList.add('hidden');
-            gameScreen.classList.remove('hidden');
+        // Это функция, которая реально запускает игру.
+        // Мы вызовем ее ПОСЛЕ того, как реклама закончится.
+        const loadGame = async () => {
+            currentQuest = quest;
 
-            const startingScene = sceneIdToLoad || currentQuestData.startScene;
-            renderScene(startingScene);
+            // Обновляем метку времени для сортировки
+            const progress = getProgress();
+            if (!progress[quest.id]) {
+                progress[quest.id] = { ...DEFAULT_QUEST_PROGRESS };
+            }
+            progress[quest.id].lastPlayed = Date.now();
+            saveProgress(progress);
 
-        } catch (error) {
-            console.error("Ошибка при загрузке квеста:", error);
-            goToMainMenu();
-        }
+            try {
+                const response = await fetch(`quests/${quest.id}.json`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const questData = await response.json();
+                currentQuestData = questData;
+
+                switchScreen('game');
+
+                const savedProgress = getProgress()[quest.id];
+                if (savedProgress && savedProgress.currentScene) {
+                    renderScene(savedProgress.currentScene);
+                } else {
+                    renderScene(currentQuestData.startScene);
+                }
+            } catch (error) {
+                console.error('Failed to load quest data:', error);
+            }
+        };
+
+        adBreak({
+            type: 'start', // Тип рекламы (при запуске)
+            name: `start_quest_${quest.id}`, // Уникальное имя для этого места
+            beforeAd: () => {
+                console.log('Реклама начинается...');
+                // Здесь можно выключить звук игры, если он есть
+            },
+            afterAd: () => {
+                console.log('Реклама завершена.');
+                // Здесь можно включить звук игры
+            },
+            adBreakDone: (info) => {
+                console.log('Рекламный блок завершен:', info);
+                // Запускаем игру ТОЛЬКО ПОСЛЕ завершения рекламы
+                loadGame();
+            }
+        });
     }
     
     function renderScene(sceneId) {
@@ -216,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.className = 'choice-button';
                 button.innerHTML = `<span class="choice-text">${choice.text}</span><div class="choice-hover-effect"></div>`;
                 button.addEventListener('click', () => {
-                    button.blur(); 
                     if (choice.nextScene === 'main_menu') {
                         if (scene.isEnding) {
                             updateCompletionStatus(scene);
