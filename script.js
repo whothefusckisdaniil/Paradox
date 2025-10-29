@@ -48,16 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Тишина.exe', 
             description: '-',
             coverImage: 'assets/covers/65a6548da4f811f0a086eaba8e646487-1.jpeg',
-            isDev: true,
-            totalEndings: 5
+            isDev: true
         },
         { 
             id: 'fracture', 
             title: 'ПЕРЕЛОМ', 
             description: 'A psychedelic text quest about how a crack in a mirror turns into a rift in your consciousness.',
             coverImage: 'assets/covers/1883afbca4dc11f0a4d34e9350978b9a-1.jpeg',
-            isDev: true,
-            totalEndings: 1
+            isDev: true
         }
     ];
 
