@@ -151,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!quest.isDev) {
                 card.addEventListener('click', (e) => {
                     if (e.target.closest('.bookmark-button')) return;
-                    // ИСПРАВЛЕНО: Передаем весь объект quest
                     startQuest(quest, hasContinue ? savedData.currentProgress.sceneId : null);
                 });
             }
@@ -181,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
         displayQuests();
     }
 
-    // --- ИСПРАВЛЕНИЕ: ВОССТАНОВЛЕНА НЕДОСТАЮЩАЯ ФУНКЦИЯ ---
     function switchScreen(screen) {
         if (screen === 'menu') {
             menuScreen.classList.remove('hidden');
@@ -191,17 +189,14 @@ document.addEventListener('DOMContentLoaded', () => {
             gameScreen.classList.remove('hidden');
         }
     }
-    // --- КОНЕЦ ИСПРАВЛЕНИЯ ---
 
-    // ИСПРАВЛЕНО: Добавлен sceneIdToLoad
     async function startQuest(quest, sceneIdToLoad) {
         if (quest.isDev) return;
         
-        // Сообщаем Google, что у нас есть звук (для H5 Ads)
-        adConfig({ sound: 'on' });
+        // ИЗМЕНЕНО: Эта строка удалена, т.к. `sound: 'on'` теперь в <head>
+        // adConfig({ sound: 'on' });
 
         // Это функция, которая реально запускает игру.
-        // Мы вызовем ее ПОСЛЕ того, как реклама закончится (или по таймауту).
         const loadGame = async () => {
             currentQuestId = quest.id;
 
@@ -216,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const questData = await response.json();
                 currentQuestData = questData;
 
-                switchScreen('game'); // <--- Теперь эта функция существует
+                switchScreen('game');
 
                 if (sceneIdToLoad) {
                     renderScene(sceneIdToLoad);
@@ -229,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
         
-        // --- ИСПРАВЛЕНО: Добавлен таймаут для рекламы ---
         let adHasFinished = false;
 
         // 1. Устанавливаем таймер
@@ -246,18 +240,21 @@ document.addEventListener('DOMContentLoaded', () => {
             name: `start_quest_${quest.id}`,
             beforeAd: () => {
                 console.log('Реклама начинается...');
-                // Здесь можно выключить звук игры, если он есть
             },
             afterAd: () => {
                  console.log('Реклама (возможно) завершена.');
-                // Здесь можно включить звук игры
             },
-            adBreakDone: (info) => {
+            // ИЗМЕНЕНО: Обновлен коллбэк в соответствии с вашим примером
+            adBreakDone: (p) => {
                 if (adHasFinished) return; // Игра уже запущена по таймауту
                 
                 clearTimeout(adTimeout); // Отменяем таймер
                 adHasFinished = true;
-                console.log('Рекламный блок завершен, запускаем игру:', info);
+                
+                // Новый лог из примера
+                console.log('breakStatus=', p?.breakStatus, p);
+                
+                console.log('Рекламный блок завершен, запускаем игру.');
                 loadGame();
             }
         });
@@ -348,14 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveData(savedData);
     }
 
-    // ИСПРАВЛЕНО: Теперь всегда запускает меню, а не квест
     async function loadInitialState() {
-        // const savedData = loadData();
-        // if (savedData?.currentProgress) {
-        //     await startQuest(savedData.currentProgress.questId, savedData.currentProgress.sceneId);
-        // } else {
-        // }
-        
         // Всегда показываем меню при запуске
         gameScreen.classList.add('hidden');
         menuScreen.classList.remove('hidden');
