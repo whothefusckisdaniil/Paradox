@@ -1,482 +1,407 @@
-// --- CONSTANTS ---
-const SAVE_KEY = 'telegramQuestProgress_v2';
+document.addEventListener('DOMContentLoaded', () => {
 
-// --- GLOBAL STATE ---
-let quests = [
-    {
-        id: 'forest-adventure',
-        title: 'Тишина.exe',
-        coverImage: 'https://placehold.co/300x400/0a0a0a/1a1a1a?text=01',
-        isDev: false,
-        totalEndings: 5 
-    },
-    {
-        id: 'space-odyssey',
-        title: 'QUEST_02',
-        coverImage: 'https://placehold.co/300x400/0a0a0a/1a1a1a?text=02',
-        isDev: true,
-        totalEndings: 4
-    },
-    {
-        id: 'castle-mystery',
-        title: 'QUEST_03',
-        coverImage: 'https://placehold.co/300x400/0a0a0a/1a1a1a?text=03',
-        isDev: true,
-        totalEndings: 1
-    },
-    {
-        id: 'pirate-treasure',
-        title: 'QUEST_04',
-        coverImage: 'https://placehold.co/300x400/0a0a0a/1a1a1a?text=04',
-        isDev: true,
-        totalEndings: 8
-    }
-];
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand();
 
-let currentQuestId = null;
-let currentQuestData = null;
-let progress = {};
-let currentMenuTab = 'all'; // 'all' or 'saved'
+    const menuScreen = document.getElementById('menu-screen');
+    const gameScreen = document.getElementById('game-screen');
+    const questListContainer = document.getElementById('quest-list');
+    const backgroundImage = document.getElementById('background-image');
+    const storyText = document.getElementById('story-text');
+    const choicesContainer = document.getElementById('choices');
+    const exitToMenuBtn = document.getElementById('exit-to-menu-btn');
+    const gameUI = document.querySelector('.game-ui');
+    const navAllBtn = document.getElementById('nav-all');
+    const navSavedBtn = document.getElementById('nav-saved');
+    const searchInput = document.getElementById('search-input');
 
-// --- TELEGRAM API ---
-const tg = window.Telegram.WebApp;
-tg.ready();
-tg.expand();
+    const SAVE_KEY = 'telegramQuestSaveData_v5';
+    let currentQuestData = null; 
+    let currentQuestId = null; 
+    let currentMenuTab = 'all';
 
-// --- DOM ELEMENTS ---
-const app = document.getElementById('app');
-const menuScreen = document.getElementById('menu-screen');
-const gameScreen = document.getElementById('game-screen');
-const questListContainer = document.getElementById('quest-list');
-const backgroundImage = document.getElementById('background-image');
-const storyText = document.getElementById('story-text');
-const choicesContainer = document.getElementById('choices');
-const exitToMenuBtn = document.getElementById('exit-to-menu-btn');
-const navAll = document.getElementById('nav-all');
-const navSaved = document.getElementById('nav-saved');
-const searchInput = document.getElementById('search-input');
-const gameUI = document.querySelector('.game-ui');
-const gameBackground = document.querySelector('.game-background');
-
-// --- HELPER FUNCTIONS ---
-
-/**
- * Загружает данные прогресса из localStorage.
- */
-function loadProgress() {
-    const savedProgressJSON = localStorage.getItem(SAVE_KEY);
-    return savedProgressJSON ? JSON.parse(savedProgressJSON) : { quests: {}, bookmarks: [] };
-}
-
-/**
- * Сохраняет данные прогресса в localStorage.
- */
-function saveProgress() {
-    localStorage.setItem(SAVE_KEY, JSON.stringify(progress));
-}
-
-/**
- * Отображает список квестов в меню.
- */
-function displayQuests() {
-    const savedProgress = loadProgress();
-    const searchTerm = searchInput.value.toLowerCase();
-    
-    // 1. Сортируем квесты (для вкладки "Сохраненные")
-    const sortedQuests = [...quests].sort((a, b) => {
-        const questA = savedProgress.quests[a.id] || {};
-        const questB = savedProgress.quests[b.id] || {};
-        return (questB.lastPlayed || 0) - (questA.lastPlayed || 0);
-    });
-
-    // 2. Фильтруем квесты
-    const filteredQuests = sortedQuests.filter(quest => {
-        // Фильтр по названию
-        const matchesSearch = quest.title.toLowerCase().includes(searchTerm);
-        if (!matchesSearch) return false;
-
-        // Фильтр по вкладкам
-        if (currentMenuTab === 'all') {
-            return true; // Показываем все (с учетом поиска)
+    const quests = [
+        {
+            id: 'curseofthethrone',
+            title: 'Проклятие Трона',
+            description: 'A horror text quest about a person trapped in a void, trying to escape.',
+            coverImage: 'assets/covers/output-8.jpg',
+            totalEndings: 5
+        },
+        {
+            id: 'ashesofthegrandline', 
+            title: 'Пепел Гранд Лайн',
+            description: '-',
+            coverImage: 'assets/covers/dark-anime-2d-cover-luffy-s-torn-straw-hat-floating-o.jpg',
+            totalEndings: 5
+        },
+        { 
+            id: 'lasttide', 
+            title: 'Последний Прилив', 
+            description: '-',
+            coverImage: 'assets/covers/output-93.jpg',
+            totalEndings: 5
+        },
+        { 
+            id: 'silence.exe', 
+            title: 'Тишина.exe', 
+            description: '-',
+            coverImage: 'assets/covers/65a6548da4f811f0a086eaba8e646487-1.jpeg',
+            isDev: true,
+            totalEndings: 5
+        },
+        { 
+            id: 'fracture', 
+            title: 'ПЕРЕЛОМ', 
+            description: 'A psychedelic text quest about how a crack in a mirror turns into a rift in your consciousness.',
+            coverImage: 'assets/covers/1883afbca4dc11f0a4d34e9350978b9a-1.jpeg',
+            isDev: true,
+            totalEndings: 1
         }
-        if (currentMenuTab === 'saved') {
-            return progress.bookmarks.includes(quest.id); // Показываем только сохраненные
-        }
-        return true;
-    });
+    ];
 
-    // 3. Отрисовываем квесты
-    questListContainer.innerHTML = '';
-    if (filteredQuests.length === 0) {
-        questListContainer.innerHTML = `<p class="search-empty">Ничего не найдено.</p>`;
-    }
+    function displayQuests() {
+        questListContainer.innerHTML = '';
+        const savedData = loadData();
+        const bookmarkedQuests = savedData?.bookmarkedQuests || [];
+        const lastReadTimestamps = savedData?.lastReadTimestamps || {};
+        const searchTerm = searchInput.value.toLowerCase().trim();
 
-    filteredQuests.forEach(quest => {
-        const questProgress = savedProgress.quests[quest.id] || {};
-        const isBookmarked = progress.bookmarks.includes(quest.id);
+        // Фильтруем квесты по вкладке и поиску
+        let questsToDisplay = quests.filter(quest => {
+            const matchesSearch = quest.title.toLowerCase().includes(searchTerm);
+            if (!matchesSearch) return false;
 
-        const card = document.createElement('div');
-        card.className = `quest-card ${quest.isDev ? 'dev' : ''}`;
-        
-        let badgesHTML = '';
-
-        // Статус "В разработке" (имеет приоритет)
-        if (quest.isDev) {
-            badgesHTML += `<div class="dev-badge">DEV</div>`;
-        } else {
-            // Статус прохождения
-            switch (questProgress.status) {
-                case 'victory':
-                    badgesHTML += `<div class="status-badge victory">ЗАВЕРШЕНО</div>`;
-                    break;
-                case 'defeat':
-                    badgesHTML += `<div class="status-badge defeat">ПРОВАЛ</div>`;
-                    break;
-                default:
-                    // Статус "Продолжить"
-                    if (questProgress.currentScene) {
-                        badgesHTML += `<div class="continue-badge">ПРОДОЛЖИТЬ</div>`;
-                    }
+            if (currentMenuTab === 'saved') {
+                return bookmarkedQuests.includes(quest.id) && !quest.isDev;
             }
-        }
+            return true;
+        });
 
-        // Счетчик концовок
-        if (quest.totalEndings && quest.totalEndings > 0) {
-            const foundEndings = questProgress.foundEndings ? questProgress.foundEndings.length : 0;
-            badgesHTML += `<div class="endings-counter">${foundEndings} / ${quest.totalEndings}</div>`;
-        }
-
-        // Иконка закладки
-        badgesHTML += `
-            <button class="bookmark-button ${isBookmarked ? 'active' : ''}" data-quest-id="${quest.id}">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                </svg>
-            </button>
-        `;
-
-        card.innerHTML = `
-            <div class="cover-image-container">
-                <img src="${quest.coverImage}" alt="${quest.title}" class="cover-image">
-                ${badgesHTML}
-            </div>
-            <div class="card-content">
-                <h2>${quest.title}</h2>
-            </div>
-        `;
-
-        // Добавляем клик только если не в разработке
-        if (!quest.isDev) {
-            card.querySelector('.cover-image-container').addEventListener('click', () => {
-                startQuest(quest);
+        // Сортируем сохраненные по дате последнего прочтения
+        if (currentMenuTab === 'saved') {
+            questsToDisplay.sort((a, b) => {
+                const timeA = lastReadTimestamps[a.id] || 0;
+                const timeB = lastReadTimestamps[b.id] || 0;
+                return timeB - timeA; // Сортировка по убыванию
             });
         }
         
-        questListContainer.appendChild(card);
-    });
-
-    // Навешиваем обработчики на иконки закладок
-    document.querySelectorAll('.bookmark-button').forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.stopPropagation(); // Не запускать квест при клике на закладку
-            toggleBookmark(button.dataset.questId);
-        });
-    });
-}
-
-/**
- * Переключает экраны (меню / игра).
- */
-function switchScreen(screen) {
-    if (screen === 'menu') {
-        menuScreen.classList.remove('hidden');
-        gameScreen.classList.add('hidden');
-        // Обновляем список на случай, если изменился статус "Продолжить"
-        displayQuests();
-    } else {
-        menuScreen.classList.add('hidden');
-        gameScreen.classList.remove('hidden');
-    }
-}
-
-/**
- * Начинает квест (загружает данные и показывает рекламу).
- */
-function startQuest(quest) {
-    if (quest.isDev) return;
-    
-    // Сообщаем Google, что у нас есть звук (для H5 Ads)
-    adConfig({ sound: 'on' });
-    
-    fetchQuestAndShowAd(quest);
-}
-
-/**
- * Шаг 1: Загружает JSON квеста, затем пытается показать рекламу.
- */
-async function fetchQuestAndShowAd(quest) {
-    const savedProgress = progress.quests[quest.id] || {};
-    let loadedQuestData;
-
-    try {
-        const response = await fetch(`quests/${quest.id}.json?v=${Date.now()}`);
-        if (!response.ok) {
-            throw new Error(`Не удалось загрузить квест: ${response.statusText}`);
-        }
-        loadedQuestData = await response.json();
-    } catch (error) {
-        console.error(error);
-        alert(`Ошибка загрузки квеста. Проверьте консоль.`);
-        return;
-    }
-
-    // --- НОВАЯ ЛОГИКА С ТАЙМАУТОМ ---
-    let adHasFinished = false;
-
-    // 1. Устанавливаем таймер, который запустит игру, если реклама не загрузится
-    const adTimeout = setTimeout(() => {
-        if (adHasFinished) return; // Реклама уже отработала
-        
-        adHasFinished = true;
-        console.warn('Ad timed out. Starting quest anyway.');
-        launchGame(quest, loadedQuestData, savedProgress, 'ad_timeout');
-    }, 3000); // 3 секунды ожидания
-
-    // 2. Пытаемся показать рекламу
-    adBreak({
-        type: 'start',
-        name: `start_quest_${quest.id}`,
-        beforeAd: () => {
-            console.log('Ad break: beforeAd');
-            tg.expand(); // Разворачиваем приложение перед рекламой
-        },
-        afterAd: () => {
-            console.log('Ad break: afterAd');
-        },
-        adBreakDone: (info) => {
-            if (adHasFinished) {
-                console.log('Ad finished, but quest already started by timeout.');
-                return; // Игра уже запущена
+        if (questsToDisplay.length === 0) {
+            let message = 'НИЧЕГО НЕ НАЙДЕНО.';
+            if (searchTerm === '' && currentMenuTab === 'saved') {
+                message = 'ВЫ ЕЩЕ НЕ ДОБАВИЛИ КВЕСТЫ В СОХРАНЕННЫЕ.';
             }
-            
-            clearTimeout(adTimeout); // Отменяем таймер
-            adHasFinished = true;
-            console.log('Ad break done, starting quest.', info);
-            launchGame(quest, loadedQuestData, savedProgress, info.adBreakStatus);
-        }
-    });
-}
-
-/**
- * Шаг 2: Запускает игру (после рекламы или таймаута).
- */
-function launchGame(quest, loadedQuestData, savedProgress, adStatus) {
-    console.log(`Launching quest: ${quest.id}. Ad status: ${adStatus}`);
-    
-    currentQuestId = quest.id;
-    currentQuestData = loadedQuestData;
-
-    // Обновляем время последнего запуска
-    if (!progress.quests[currentQuestId]) {
-        progress.quests[currentQuestId] = { foundEndings: [] };
-    }
-    progress.quests[currentQuestId].lastPlayed = Date.now();
-    saveProgress();
-
-    switchScreen('game');
-
-    // Решаем, с какой сцены начать
-    if (savedProgress.currentScene && savedProgress.questId === quest.id) {
-        renderScene(savedProgress.currentScene);
-    } else {
-        renderScene(currentQuestData.startScene);
-    }
-}
-
-/**
- * Отрисовывает игровую сцену.
- */
-function renderScene(sceneId) {
-    const scene = currentQuestData.scenes[sceneId];
-    if (!scene) {
-        console.error(`Сцена "${sceneId}" не найдена!`);
-        return;
-    }
-
-    // 1. Обновляем фон
-    backgroundImage.src = scene.backgroundImage;
-
-    // 2. Обновляем текст
-    storyText.innerHTML = scene.text;
-
-    // 3. Обновляем выборы
-    choicesContainer.innerHTML = '';
-    scene.choices.forEach(choice => {
-        const button = document.createElement('button');
-        button.className = 'choice-button';
-        button.innerHTML = `<span class="choice-text">${choice.text}</span><div class="choice-hover-effect"></div>`;
-        
-        button.addEventListener('click', () => {
-            button.blur(); // Убираем фокус с кнопки, чтобы она "потухла"
-            
-            if (choice.nextScene === 'main_menu') {
-                // Проверяем, является ли эта сцена концовкой
-                if (scene.isEnding) {
-                    updateCompletionStatus(scene);
-                }
-                goToMainMenu(true); // Завершить квест и очистить прогресс
-            } else {
-                renderScene(choice.nextScene);
-            }
-        });
-        choicesContainer.appendChild(button);
-    });
-
-    // 4. Сохраняем прогресс (текущую сцену)
-    if (progress.quests[currentQuestId]) {
-        progress.quests[currentQuestId].currentScene = sceneId;
-        saveProgress();
-    }
-}
-
-/**
- * Обновляет статус прохождения квеста (победа/поражение, найденные концовки).
- */
-function updateCompletionStatus(scene) {
-    if (!progress.quests[currentQuestId]) {
-        // Создаем запись, если ее нет (например, квест пройден за один раз)
-        progress.quests[currentQuestId] = { foundEndings: [], lastPlayed: Date.now() };
-    }
-    const questProgress = progress.quests[currentQuestId];
-
-    // 1. Обновляем статус (победа/провал)
-    if (scene.endingType === 'victory') {
-        questProgress.status = 'victory';
-    } else if (scene.endingType === 'defeat') {
-        questProgress.status = 'defeat';
-    } else {
-        // Если тип не указан, но это концовка, считаем нейтральным/победой
-        questProgress.status = 'victory';
-    }
-
-    // 2. Добавляем УНИКАЛЬНУЮ концовку в список найденных
-    if (scene.endingId && !questProgress.foundEndings.includes(scene.endingId)) {
-        questProgress.foundEndings.push(scene.endingId);
-    }
-    
-    saveProgress();
-}
-
-/**
- * Возвращает в главное меню.
- */
-function goToMainMenu(clearQuestProgress) {
-    if (clearQuestProgress && currentQuestId && progress.quests[currentQuestId]) {
-        // Удаляем только прогресс *этого* квеста (сцену), но оставляем концовки
-        delete progress.quests[currentQuestId].currentScene;
-        console.log(`Прогресс для ${currentQuestId} очищен.`);
-        saveProgress();
-    }
-    // Если clearQuestProgress = false (нажата кнопка "МЕНЮ"),
-    // мы ничего не удаляем, и прогресс остается сохраненным.
-
-    currentQuestId = null;
-    currentQuestData = null;
-    switchScreen('menu');
-}
-
-/**
- * Добавляет или удаляет квест из закладок.
- */
-function toggleBookmark(questId) {
-    const bookmarkIndex = progress.bookmarks.indexOf(questId);
-    if (bookmarkIndex > -1) {
-        // Удалить из закладок
-        progress.bookmarks.splice(bookmarkIndex, 1);
-    } else {
-        // Добавить в закладки
-        progress.bookmarks.push(questId);
-    }
-    saveProgress();
-    displayQuests(); // Перерисовать меню, чтобы обновить иконки
-}
-
-/**
- * Переключает вкладки в меню.
- */
-function switchMenuTab(tab) {
-    currentMenuTab = tab;
-    navAll.classList.toggle('active', tab === 'all');
-    navSaved.classList.toggle('active', tab === 'saved');
-    displayQuests();
-}
-
-/**
- * Скрывает/показывает игровой UI при долгом нажатии.
- */
-function setupUIHiding() {
-    let pressTimer = null;
-
-    const startPress = (e) => {
-        // Не скрывать, если нажатие на кнопку
-        if (e.target.closest('button')) {
+            questListContainer.innerHTML = `<p class="empty-list-message">${message}</p>`;
             return;
         }
+
+        questsToDisplay.forEach(quest => {
+            const hasContinue = savedData?.currentProgress?.questId === quest.id;
+            const completionData = savedData?.questCompletion?.[quest.id];
+            const isBookmarked = bookmarkedQuests.includes(quest.id);
+            
+            const card = document.createElement('div');
+            card.className = `quest-card ${quest.isDev ? 'dev' : ''}`;
+            
+            let statusBadge = '';
+            
+            // Статус "В разработке" имеет приоритет
+            if (quest.isDev) {
+                 statusBadge = '<div class="dev-badge">В РАЗРАБОТКЕ</div>';
+            } else if (hasContinue) {
+                statusBadge = '<div class="continue-badge">ПРОДОЛЖИТЬ</div>';
+            } else if (completionData) {
+                if (completionData.status === 'failed') {
+                    statusBadge = '<div class="failed-badge">ПРОВАЛ</div>';
+                } else if (completionData.status === 'completed') {
+                    statusBadge = '<div class="completed-badge">ЗАВЕРШЕНО</div>';
+                }
+            }
+
+            let endingsCounterHTML = '';
+            if (quest.totalEndings && quest.totalEndings > 0) {
+                const endingsFoundCount = completionData?.endingsFound?.length || 0;
+                endingsCounterHTML = `<div class="endings-counter">КОНЦОВКИ: ${endingsFoundCount}/${quest.totalEndings}</div>`;
+            }
+
+            const bookmarkButtonHTML = `
+                <button class="bookmark-button ${isBookmarked ? 'bookmarked' : ''}" data-quest-id="${quest.id}">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </button>
+            `;
+
+            card.innerHTML = `
+                <div class="card-bg-pattern"></div>
+                <div class="cover-image-container">
+                    <img src="${quest.coverImage}" alt="${quest.title}" class="cover-image">
+                    ${!quest.isDev ? bookmarkButtonHTML : ''}
+                    ${statusBadge}
+                    <div class="hover-overlay"></div>
+                </div>
+                <div class="card-content">
+                    ${endingsCounterHTML}
+                    <h2>${quest.title}</h2>
+                </div>
+            `;
+            
+            if (!quest.isDev) {
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('.bookmark-button')) return;
+                    // ИСПРАВЛЕНО: Передаем весь объект quest
+                    startQuest(quest, hasContinue ? savedData.currentProgress.sceneId : null);
+                });
+            }
+
+            questListContainer.appendChild(card);
+        });
         
-        e.preventDefault();
-        pressTimer = setTimeout(() => {
-            gameUI.classList.add('hidden');
-        }, 300); // 0.3 секунды для долгого нажатия
-    };
+        document.querySelectorAll('.bookmark-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleBookmark(button.dataset.questId);
+            });
+        });
+    }
 
-    const endPress = (e) => {
-        if (pressTimer) {
-            clearTimeout(pressTimer);
-            pressTimer = null;
+    function toggleBookmark(questId) {
+        const savedData = loadData();
+        const index = savedData.bookmarkedQuests.indexOf(questId);
+        if (index > -1) {
+            savedData.bookmarkedQuests.splice(index, 1);
+        } else {
+            savedData.bookmarkedQuests.push(questId);
         }
-        gameUI.classList.remove('hidden');
-    };
+        // Обновляем метку времени, чтобы квест "поднялся"
+        savedData.lastReadTimestamps[questId] = Date.now();
+        saveData(savedData);
+        displayQuests();
+    }
 
-    gameBackground.addEventListener('mousedown', startPress);
-    gameBackground.addEventListener('mouseup', endPress);
-    gameBackground.addEventListener('mouseleave', endPress); // Если убрали палец за пределы
+    // ИСПРАВЛЕНО: Добавлен sceneIdToLoad
+    async function startQuest(quest, sceneIdToLoad) {
+        if (quest.isDev) return;
+        
+        // Сообщаем Google, что у нас есть звук (для H5 Ads)
+        adConfig({ sound: 'on' });
 
-    gameBackground.addEventListener('touchstart', startPress, { passive: false });
-    gameBackground.addEventListener('touchend', endPress);
-    gameBackground.addEventListener('touchcancel', endPress);
-}
+        // Это функция, которая реально запускает игру.
+        // Мы вызовем ее ПОСЛЕ того, как реклама закончится (или по таймауту).
+        const loadGame = async () => {
+            currentQuestId = quest.id;
 
+            // Обновляем метку времени для сортировки
+            const savedData = loadData();
+            savedData.lastReadTimestamps[quest.id] = Date.now();
+            saveData(savedData);
 
-// --- INITIALIZATION ---
+            try {
+                const response = await fetch(`quests/${quest.id}.json?v=${Date.now()}`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const questData = await response.json();
+                currentQuestData = questData;
 
-/**
- * Загружает начальное состояние приложения.
- */
-function loadInitialState() {
-    progress = loadProgress();
-    const savedQuestId = null; // Мы больше не загружаем квест при старте
+                switchScreen('game');
+
+                if (sceneIdToLoad) {
+                    renderScene(sceneIdToLoad);
+                } else {
+                    renderScene(currentQuestData.startScene);
+                }
+            } catch (error) {
+                console.error('Failed to load quest data:', error);
+                alert('Не удалось загрузить данные квеста. Попробуйте позже.');
+            }
+        };
+        
+        // --- ИСПРАВЛЕНО: Добавлен таймаут для рекламы ---
+        let adHasFinished = false;
+
+        // 1. Устанавливаем таймер
+        const adTimeout = setTimeout(() => {
+            if (adHasFinished) return;
+            adHasFinished = true;
+            console.warn('Ad timed out. Starting quest anyway.');
+            loadGame();
+        }, 3000); // 3 секунды ожидания
+
+        // 2. Пытаемся показать рекламу
+        adBreak({
+            type: 'start',
+            name: `start_quest_${quest.id}`,
+            beforeAd: () => {
+                console.log('Реклама начинается...');
+                // Здесь можно выключить звук игры, если он есть
+            },
+            afterAd: () => {
+                 console.log('Реклама (возможно) завершена.');
+                // Здесь можно включить звук игры
+            },
+            adBreakDone: (info) => {
+                if (adHasFinished) return; // Игра уже запущена по таймауту
+                
+                clearTimeout(adTimeout); // Отменяем таймер
+                adHasFinished = true;
+                console.log('Рекламный блок завершен, запускаем игру:', info);
+                loadGame();
+            }
+        });
+    }
     
-    // Вместо авто-загрузки квеста, просто показываем меню
-    displayQuests();
-    switchScreen('menu');
-}
+    function renderScene(sceneId) {
+        const scene = currentQuestData.scenes[sceneId];
+        if (!scene) {
+            console.error(`Сцена с ID "${sceneId}" не найдена!`);
+            goToMainMenu(true); // Принудительный выход в меню
+            return;
+        }
 
-// --- APP LAUNCH ---
-document.addEventListener('DOMContentLoaded', () => {
-    // Навигация по вкладкам
-    navAll.addEventListener('click', () => switchMenuTab('all'));
-    navSaved.addEventListener('click', () => switchMenuTab('saved'));
+        backgroundImage.src = scene.backgroundImage;
+        storyText.innerHTML = `<p>${scene.text.replace(/\n/g, '</p><p>')}</p>`;
+        choicesContainer.innerHTML = '';
 
-    // Поиск
+        if (scene.choices && scene.choices.length > 0) {
+            scene.choices.forEach(choice => {
+                const button = document.createElement('button');
+                button.className = 'choice-button';
+                button.innerHTML = `<span class="choice-text">${choice.text}</span><div class="choice-hover-effect"></div>`;
+                
+                button.addEventListener('click', () => {
+                    button.blur(); // "Тушим" кнопку
+                    
+                    if (choice.nextScene === 'main_menu') {
+                        if (scene.isEnding) {
+                            updateCompletionStatus(scene);
+                        }
+                        goToMainMenu(true);
+                    } else {
+                        renderScene(choice.nextScene);
+                    }
+                });
+                choicesContainer.appendChild(button);
+            });
+        }
+        
+        // Сохраняем прогресс только если это не конец
+        if (!scene.isEnding) {
+            saveCurrentProgress(sceneId);
+        }
+    }
+    
+    function updateCompletionStatus(endingScene) {
+        const savedData = loadData();
+        if (!savedData.questCompletion[currentQuestId]) {
+            savedData.questCompletion[currentQuestId] = { endingsFound: [] };
+        }
+        
+        const questStats = savedData.questCompletion[currentQuestId];
+        questStats.status = endingScene.endingType === 'defeat' ? 'failed' : 'completed';
+        
+        if (endingScene.endingId && !questStats.endingsFound.includes(endingScene.endingId)) {
+            questStats.endingsFound.push(endingScene.endingId);
+        }
+        saveData(savedData);
+    }
+    
+    function saveData(data) {
+        localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+    }
+
+    function loadData() {
+        const savedDataJSON = localStorage.getItem(SAVE_KEY);
+        try {
+            const data = savedDataJSON ? JSON.parse(savedDataJSON) : {};
+            // Инициализация полей, если их нет, для избежания ошибок
+            if (!data.bookmarkedQuests) data.bookmarkedQuests = [];
+            if (!data.questCompletion) data.questCompletion = {};
+            if (!data.lastReadTimestamps) data.lastReadTimestamps = {};
+            // data.currentProgress проверяется при загрузке
+            return data;
+        } catch (e) {
+            console.error("Ошибка чтения сохранения:", e);
+            localStorage.removeItem(SAVE_KEY);
+            return { bookmarkedQuests: [], questCompletion: {}, lastReadTimestamps: {} };
+        }
+    }
+
+    function saveCurrentProgress(sceneId) {
+        const savedData = loadData();
+        savedData.currentProgress = {
+            questId: currentQuestId,
+            sceneId: sceneId
+        };
+        saveData(savedData);
+    }
+
+    // ИСПРАВЛЕНО: Теперь всегда запускает меню, а не квест
+    async function loadInitialState() {
+        // const savedData = loadData();
+        // if (savedData?.currentProgress) {
+        //     await startQuest(savedData.currentProgress.questId, savedData.currentProgress.sceneId);
+        // } else {
+        // }
+        
+        // Всегда показываем меню при запуске
+        gameScreen.classList.add('hidden');
+        menuScreen.classList.remove('hidden');
+        displayQuests();
+    }
+
+    function goToMainMenu(isEnding = false) {
+        if (isEnding) {
+            const savedData = loadData();
+            savedData.currentProgress = null; 
+            saveData(savedData);
+        }
+        
+        gameScreen.classList.add('hidden');
+        menuScreen.classList.remove('hidden');
+        currentQuestData = null;
+        currentQuestId = null;
+        displayQuests();
+    }
+
+    function handleNavClick(tab) {
+        currentMenuTab = tab;
+        navAllBtn.classList.toggle('active', tab === 'all');
+        navSavedBtn.classList.toggle('active', tab === 'saved');
+        displayQuests();
+    }
+
+    // --- Инициализация и обработчики событий ---
+    
+    exitToMenuBtn.addEventListener('click', () => goToMainMenu(false));
+    navAllBtn.addEventListener('click', () => handleNavClick('all'));
+    navSavedBtn.addEventListener('click', () => handleNavClick('saved'));
     searchInput.addEventListener('input', displayQuests);
 
-    // Кнопка "МЕНЮ" в игре
-    exitToMenuBtn.addEventListener('click', () => goToMainMenu(false));
+    // Логика скрытия UI по долгому нажатию
+    let pressTimer;
+    gameScreen.addEventListener('mousedown', (e) => {
+        if (e.target.closest('button')) return;
+        pressTimer = setTimeout(() => gameUI.classList.add('hidden-ui'), 200);
+    });
+    gameScreen.addEventListener('mouseup', () => {
+        clearTimeout(pressTimer);
+        gameUI.classList.remove('hidden-ui');
+    });
+    gameScreen.addEventListener('mouseleave', () => {
+        clearTimeout(pressTimer);
+        gameUI.classList.remove('hidden-ui');
+    });
+    gameScreen.addEventListener('touchstart', (e) => {
+        if (e.target.closest('button')) return;
+        e.preventDefault();
+        pressTimer = setTimeout(() => gameUI.classList.add('hidden-ui'), 200);
+    }, { passive: false });
+    gameScreen.addEventListener('touchend', () => {
+        clearTimeout(pressTimer);
+        gameUI.classList.remove('hidden-ui');
+    });
 
-    // Скрытие UI в игре
-    setupUIHiding();
-
-    // Загрузка
     loadInitialState();
 });
 
