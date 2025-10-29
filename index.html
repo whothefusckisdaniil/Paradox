@@ -10,29 +10,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    
-    <!-- 
-      НОВЫЙ КОД GOOGLE ADSENDE H5 GAMES
-    -->
-    
-    <!-- 1. Загрузка основного скрипта AdSense H5 -->
-    <!-- Атрибут data-adbreak-test="on" УДАЛЕН для запроса реальной рекламы -->
+
+    <!-- ИЗМЕНЕНО -->
     <script async
         data-ad-client="ca-pub-8122604857359730"
+        data-ad-frequency-hint="60s"
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        
-    <!-- 2. Инициализация API, как в вашем примере -->
     <script>
-      window.adsbygoogle = window.adsbygoogle || [];
-      const adBreak = adConfig = function(o){ adsbygoogle.push(o); };
+        // Инициализация API с прелоадом
+        window.adsbygoogle = window.adsbygoogle || [];
+        const adBreak = adConfig = o => adsbygoogle.push(o);
+
+        // Прелоад и настройка звука
+        adConfig({ preloadAdBreaks: 'on', sound: 'on' });
     </script>
-    
 </head>
 <body>
     <div id="app">
         <div class="scanline-overlay">
             <div class="scanline"></div>
         </div>
+
         <div class="noise-overlay"></div>
 
         <div id="menu-screen" class="screen">
