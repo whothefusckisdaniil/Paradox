@@ -181,6 +181,18 @@ document.addEventListener('DOMContentLoaded', () => {
         displayQuests();
     }
 
+    // --- ИСПРАВЛЕНИЕ: ВОССТАНОВЛЕНА НЕДОСТАЮЩАЯ ФУНКЦИЯ ---
+    function switchScreen(screen) {
+        if (screen === 'menu') {
+            menuScreen.classList.remove('hidden');
+            gameScreen.classList.add('hidden');
+        } else {
+            menuScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+        }
+    }
+    // --- КОНЕЦ ИСПРАВЛЕНИЯ ---
+
     // ИСПРАВЛЕНО: Добавлен sceneIdToLoad
     async function startQuest(quest, sceneIdToLoad) {
         if (quest.isDev) return;
@@ -204,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const questData = await response.json();
                 currentQuestData = questData;
 
-                switchScreen('game');
+                switchScreen('game'); // <--- Теперь эта функция существует
 
                 if (sceneIdToLoad) {
                     renderScene(sceneIdToLoad);
