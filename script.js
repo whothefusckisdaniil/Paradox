@@ -190,74 +190,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // ИЗМЕНЕНО: Вся логика H5 Ads, adBreak и таймаутов удалена.
+    // Квест теперь запускается немедленно.
     async function startQuest(quest, sceneIdToLoad) {
         if (quest.isDev) return;
         
-        // ИЗМЕНЕНО: Эта строка удалена, т.к. `sound: 'on'` теперь в <head>
-        // adConfig({ sound: 'on' });
+        currentQuestId = quest.id;
 
-        // Это функция, которая реально запускает игру.
-        const loadGame = async () => {
-            currentQuestId = quest.id;
+        // Обновляем метку времени для сортировки
+        const savedData = loadData();
+        savedData.lastReadTimestamps[quest.id] = Date.now();
+        saveData(savedData);
 
-            // Обновляем метку времени для сортировки
-            const savedData = loadData();
-            savedData.lastReadTimestamps[quest.id] = Date.now();
-            saveData(savedData);
+        try {
+            const response = await fetch(`quests/${quest.id}.json?v=${Date.now()}`);
+            if (!response.ok) throw new Error('Network response was not ok');
+            const questData = await response.json();
+            currentQuestData = questData;
 
-            try {
-                const response = await fetch(`quests/${quest.id}.json?v=${Date.now()}`);
-                if (!response.ok) throw new Error('Network response was not ok');
-                const questData = await response.json();
-                currentQuestData = questData;
+            switchScreen('game');
 
-                switchScreen('game');
-
-                if (sceneIdToLoad) {
-                    renderScene(sceneIdToLoad);
-                } else {
-                    renderScene(currentQuestData.startScene);
-                }
-            } catch (error) {
-                console.error('Failed to load quest data:', error);
-                alert('Не удалось загрузить данные квеста. Попробуйте позже.');
+            if (sceneIdToLoad) {
+                renderScene(sceneIdToLoad);
+            } else {
+                renderScene(currentQuestData.startScene);
             }
-        };
-        
-        let adHasFinished = false;
-
-        // 1. Устанавливаем таймер
-        const adTimeout = setTimeout(() => {
-            if (adHasFinished) return;
-            adHasFinished = true;
-            console.warn('Ad timed out. Starting quest anyway.');
-            loadGame();
-        }, 3000); // 3 секунды ожидания
-
-        // 2. Пытаемся показать рекламу
-        adBreak({
-            type: 'start',
-            name: `start_quest_${quest.id}`,
-            beforeAd: () => {
-                console.log('Реклама начинается...');
-            },
-            afterAd: () => {
-                 console.log('Реклама (возможно) завершена.');
-            },
-            // ИЗМЕНЕНО: Обновлен коллбэк в соответствии с вашим примером
-            adBreakDone: (p) => {
-                if (adHasFinished) return; // Игра уже запущена по таймауту
-                
-                clearTimeout(adTimeout); // Отменяем таймер
-                adHasFinished = true;
-                
-                // Новый лог из примера
-                console.log('breakStatus=', p?.breakStatus, p);
-                
-                console.log('Рекламный блок завершен, запускаем игру.');
-                loadGame();
-            }
-        });
+        } catch (error) {
+            console.error('Failed to load quest data:', error);
+            alert('Не удалось загрузить данные квеста. Попробуйте позже.');
+        }
     }
     
     function renderScene(sceneId) {
