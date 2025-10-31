@@ -11,19 +11,9 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <!-- ИЗМЕНЕНО -->
-    <script async
-        data-ad-client="ca-pub-8122604857359730"
-        data-ad-frequency-hint="60s"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        // Инициализация API с прелоадом
-        window.adsbygoogle = window.adsbygoogle || [];
-        const adBreak = adConfig = o => adsbygoogle.push(o);
-
-        // Прелоад и настройка звука
-        adConfig({ preloadAdBreaks: 'on', sound: 'on' });
-    </script>
+    <!-- ИЗМЕНЕНО: Старый код H5 Games удален. Добавлен ваш новый скрипт -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4477655659478872"
+     crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
@@ -43,6 +33,20 @@
                 <button id="nav-all" class="nav-button active" data-tab="all">ВСЕ</button>
                 <button id="nav-saved" class="nav-button" data-tab="saved">СОХРАНЕННЫЕ</button>
             </nav>
+
+            <!-- ИЗМЕНЕНО: Добавлен ваш тестовый блок -->
+            <div style="margin: 16px 0;">
+                <!-- Test Block -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4477655659478872"
+                     data-ad-slot="9368967011"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
 
             <div class="search-container">
                 <input type="text" id="search-input" class="search-input" placeholder="ПОИСК ПО НАЗВАНИЮ...">
