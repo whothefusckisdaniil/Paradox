@@ -29,6 +29,7 @@ body {
     font-family: 'Share Tech Mono', 'VT323', monospace;
     padding: 16px;
     min-height: 100vh;
+    /* ИСПРАВЛЕНО: Убран overflow: hidden, чтобы не конфликтовать */
 }
 
 .scanline-overlay {
@@ -525,6 +526,11 @@ body {
     body {
         padding: 8px;
     }
+    
+    /* ИСПРАВЛЕНИЕ ДЛЯ СЕТКИ НА МАЛЫХ ЭКРАНАХ */
+    #menu-screen {
+        height: calc(100vh - 16px);
+    }
 
     .screen-header h1 {
         font-size: 1.75rem;
@@ -564,3 +570,31 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--border-light);
 }
+
+/* === ДОБАВЛЕНО: Исправление для скроллинга и рекламного блока === */
+
+/* 1. Задаем экрану меню гибкую компоновку */
+#menu-screen {
+    display: flex;
+    flex-direction: column;
+    /* Высота = 100% экрана минус отступы (padding) 
+      Ваш padding: 16px; значит 16px*2 = 32px
+    */
+    height: calc(100vh - 32px); 
+}
+
+/* 2. Заставляем "шапку" (все, кроме списка) не растягиваться */
+#menu-screen > .screen-header,
+#menu-screen > .main-nav,
+#menu-screen > .search-container,
+#menu-screen > div[style*="text-align: center"] {
+    flex-shrink: 0;
+}
+
+/* 3. Заставляем список квестов занять все оставшееся место и прокручиваться */
+#quest-list-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
