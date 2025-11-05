@@ -11,9 +11,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <!-- Скрипт AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4477655659478872"
-     crossorigin="anonymous"></script>
+    <script src="https://cdn.tds.bid/bid.js" type="text/javascript" async></script>
 </head>
 <body>
     <div id="app">
@@ -35,16 +33,26 @@
             </nav>
 
             <!-- ИЗМЕНЕНО: Вставлен новый рекламный блок -->
-            <div style="margin: 16px 0; text-align: center;">
-                <!-- Test Block -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:300px;height:250px"
-                     data-ad-client="ca-pub-4477655659478872"
-                     data-ad-slot="9368967011"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
+            <div id="pau-id">
+    <script>
+        if (window.defineRecWidget){
+            window.defineRecWidget({ 
+                containerId: "pau-id",
+                plId: "5594",
+                prId: "5594-587",
+                product: "pau",
+         })
+        }else{
+            window.recWait = window.recWait || [];
+            window.recWait.push({ 
+                containerId: "pau-id",
+                plId: "5594",
+                prId: "5594-587",
+                product: "pau",
+         })
+        }
+    </script>
+</div>
 
             <div class="search-container">
                 <input type="text" id="search-input" class="search-input" placeholder="ПОИСК ПО НАЗВАНИЮ...">
