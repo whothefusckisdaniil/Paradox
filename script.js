@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Последний Прилив', 
             description: '-',
             coverImage: 'assets/covers/output-93.jpg',
+            isDev: true,
             totalEndings: 5
         },
         { 
